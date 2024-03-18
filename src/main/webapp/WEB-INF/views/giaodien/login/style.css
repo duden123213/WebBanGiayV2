@@ -1,0 +1,56 @@
+.logo{
+    width: 100%;
+}
+.nav-search{
+    margin: 1rem 0;
+}
+.link-text{
+    text-decoration: none;
+    color: #00575C;
+}
+.link-text:hover{
+    text-decoration: underline;
+}
+#help{
+    float: right;
+    margin: 1rem 0;
+}
+.main{
+    background-image: url('/assets/img/banner/banner_log.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.form{
+    margin: 3rem 0 1rem 0;
+    padding: 3rem;
+    height: 690px;
+    background-color: white;
+}
+.btn{
+    color: white !important;
+    background-color: #00575C !important;
+}
+.btn:hover{
+    background-color: #FFB800 !important;
+}
+.login{
+    height: 46px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    border-radius: 30px !important;
+}
+.text-log{
+    margin: 1rem 0 1rem 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+.text-log>span{
+    font-weight: 400;
+    color: #7A7A7A;
+}

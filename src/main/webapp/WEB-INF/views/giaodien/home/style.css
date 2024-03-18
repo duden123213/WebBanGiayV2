@@ -1,0 +1,58 @@
+.banner{
+    width: 100%;
+    margin: 2rem 0;
+}
+.link-recommend{
+    position: relative;
+    width: 50%;
+    max-width: 300px;
+}
+.img-recommend {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.col-md-3{
+    margin-bottom: 20px;
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: 0.5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.link-recommend:hover .overlay {
+    opacity: 1;
+}
+.frame{
+    border: 1px solid #00575C;
+    border-radius: 15px;
+    margin-top: 60px;
+    padding: 30px 30px 10px 30px;
+    position: relative;
+}
+.frame>p{
+    width: 251px;
+    height: 48px;
+    padding: 10px 19px 10px 19px;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F7F7F7;
+    padding: 0 10px;
+}

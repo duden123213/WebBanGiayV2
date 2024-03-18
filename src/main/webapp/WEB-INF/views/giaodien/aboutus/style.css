@@ -1,0 +1,15 @@
+.link-text{
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #00575C;
+    transition: all 0.3s ease-in-out;
+}
+.link-text:hover{
+    text-decoration: underline;
+}
+
+.main .container{
+    padding: 3rem;
+    background-color: white;
+}

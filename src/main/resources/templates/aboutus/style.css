@@ -1,0 +1,209 @@
+#freeShip{
+    text-align: center;
+    height: 31px;
+    width: 100%;
+    color: white;
+    background-color: #00575C;
+}
+#freeShip a{
+    color: white !important;
+}
+#freeShip a:hover{
+    color: white !important;
+    text-decoration: none;
+}
+#text_logo{
+    color: #00575C;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 60px;
+}
+.logo{
+    width: 100%;
+}
+footer{
+    clear: both;
+}
+#text_subscribe{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+#text_blog{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #7A7A7A;
+}
+.btn{
+    color: white !important;
+    background-color: #00575C !important;
+}
+.input-group>.btn{
+    border-radius: 30px;
+    margin-right: 0rem;
+}
+.btn:hover{
+    background-color: #FFB800 !important;
+}
+.input-group>input{
+    width: 375px;
+    height: 53px;
+    border-radius: 100px;
+}
+#track_order{
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: 128px;
+    height: 35px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    color: white !important;
+    background-color: #00575C;
+}
+.fa{
+    font-size: 20px !important;
+    color: #00575C;
+    transition: all 0.2s ease-in-out;
+}
+.fa:hover{
+    color: #FFB800;
+}
+nav .fa{
+    margin: 15px 0 15px 25px !important;
+}
+footer .fa{
+    margin-right: 25px;
+}
+#logo_appstore{
+    width: 132px;
+    top: 128px;
+    left: -2px;
+}
+#Copyright{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #7A7A7A;
+}
+.text_content_footer{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+.text_footer{
+    color: #7A7A7A;
+}
+.link_footer{
+    text-decoration: none;
+    color: #7A7A7A;
+}
+.link_footer:hover{
+    text-decoration: underline 1.5px #7A7A7A;
+}
+.col-md-4{
+    margin-bottom: 30px;
+}
+.bd-footer{
+    padding-top: 6rem!important;
+    border-top: 2px solid #00575C;
+}
+.justify-content-end>.nav-item>.nav-link{
+    text-decoration: underline 1.5px #000000;
+    color: #000000 !important;
+}
+.justify-content-end>.nav-item>.nav-link:hover{
+    text-decoration: none;
+}
+.nav-search{
+    margin: 1rem 0;
+}
+.nav-shadow{
+    box-shadow: 0px 1px 1px 0px #0000001A;
+    margin-bottom: 1px;
+}
+.nav-underline>.nav-item>.nav-link{
+    padding: 8px 0;
+    font-variant: small-caps;
+    font-weight: 500;
+    font-size: large;
+    color: #000000;
+    transition: all 0.3s ease-in-out;
+}
+.nav-underline>.nav-item>.nav-link:hover{
+    position: relative;
+    color: #00575C;
+}
+.nav-underline>.nav-item>.nav-link:hover:after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 80px;
+    transform: scale(1);
+    background-color: #00575C;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+.caption{
+    margin: 1rem;
+}
+.caption>p{
+    color: black;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.caption>.price{
+    font-size: large;
+    font-weight: 500;
+    color: #00575C;
+}
+.caption>.sold{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    float: right;
+    color: #7A7A7A !important;
+}
+.main{
+    background-color: #F7F7F7 !important;
+}
+.link-text{
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #00575C;
+    transition: all 0.3s ease-in-out;
+}
+.link-text:hover{
+    text-decoration: underline;
+}
+
+.main .container{
+    padding: 3rem;
+    background-color: white;
+}

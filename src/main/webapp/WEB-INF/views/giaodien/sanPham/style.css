@@ -1,0 +1,111 @@
+.col-md-3{
+    margin-bottom: 2rem;
+}
+.text-filter{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    margin-bottom: 30px !important;
+}
+.filter{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin: 20px 0 15px 0 !important;
+}
+.filter-brand{
+    border-bottom: 1px solid #E0E0E0;
+    padding: 6px;
+    transition: all 0.3s ease;
+}
+.filter-brand:hover{
+    background-color: #E0E0E0;
+}
+.filter-brand a{
+    text-decoration: none;
+    color: black;
+}
+.content{
+    margin-bottom: 30px;
+}
+.text-content{
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 33px;
+    letter-spacing: 0em;
+    color: #00575C;
+}
+.available{
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 33px;
+    letter-spacing: 0em;
+    color: #7A7A7A;
+}
+.form-check-input:checked {
+    background-color: #FFB800 !important;
+    border-color: #FFB800 !important;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem #ffe5a3 !important;
+}
+.btn-group{
+    width: 236px;
+    height: 47px;
+    float: right;
+}
+.btn-group>.btn-outline{
+    border-radius: 10rem;
+    border: 1px solid black;
+    color: black !important;
+    background-color: white !important;
+}
+.btn-group>.btn-outline:hover{
+    color: white !important;
+    background-color: black !important;
+}
+.dropdown-item:focus{
+    background-color: black !important;
+}
+.pagination{
+    justify-content: center;
+}
+.pagea-item-active .pagea-link{
+    background-color: #00575C4D;
+}
+.pagea-text{
+    display: block;
+    border-radius: 20px;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+.pagea-link{
+    display: block;
+    border-radius: 20px;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+.pagea-link:hover{    
+    background-color: #00575C4D;
+    transition: all 0.3s ease-in-out;
+}
