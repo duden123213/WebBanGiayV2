@@ -56,6 +56,7 @@
                         <a href="/chiTietSanPham/reduce/${productDetail.id}" class="btn btn-outline">-</a>
                         <input disabled type="text" class="form-control" value="${productDetail.soLuong}"/>
                         <a href="/chiTietSanPham/increase/${productDetail.id}" class="btn btn-outline">+</a>
+
                     </div>
                 </div>
                 <div class="col-6 my-2">

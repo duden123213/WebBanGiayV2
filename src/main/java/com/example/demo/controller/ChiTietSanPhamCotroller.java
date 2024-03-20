@@ -85,7 +85,7 @@ public class ChiTietSanPhamCotroller {
 
         productDetail.setSoLuong(productDetail.getSoLuong() + 1);
         productDetailServiceimpl.update(productDetailId, productDetail);
-        return "redirect:/chitietSanPham/indexcus/{productDetailId}";
+        return "redirect:/chiTietSanPham/indexcus/{productDetailId}";
     }
 
     @GetMapping("/reduce/{productDetailId}")
