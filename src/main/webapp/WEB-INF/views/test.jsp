@@ -7,139 +7,96 @@
     </style>
 </head>
 
-<br/>
 <div class="container">
+    <br/>
     <div class="row">
-        <div class="col-6 row">
-            <div class="product-content-big-img col-9">
-                <img src="/assets/img/sanPham/${image.tenHinhAnh}" alt="" />
-            </div>
-            <div class="product-content-small-img col-3">
-                <c:forEach items="${listImage}" var="sp">
-                    <img src="/assets/img/sanPham/${sp.tenHinhAnh}" alt="" />
-                </c:forEach>
+        <div class="col-8">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                    <tr>
+                        <%--                  <th scope="col">--%>
+                        <%--                    <input class="form-check-input" type="checkbox" onchange="checkAll(this)" />--%>
+                        <%--                  </th>--%>
+                        <th scope="col" class="text-sp"colspan="2">Sản Phâm</th>
+                        <th scope="col" class="text-sp">Màu sắc</th>
+                        <th scope="col" class="text-sp">Số lượng</th>
+                        <th scope="col" class="text-sp">Tổng tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${listCartDetail}" var="gh">
+                        <tr>
+                            <td>
+                                <img src="/assets/img/sanPham/${gh.hinhAnh}" alt="" height="65px"/>
+                            </td>
+                            <td>
+                                <p>${gh.tenSanPham}</p>
+                                <a href="/gioHang/delete/${gh.chiTietSanPhamId}">
+                                    <span class="fa fa-trash"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <p>${gh.tenMauSac}</p>
+                            </td>
+                            <td>
+                                <div class="input-group mb-3">
+                                    <a href="/gioHang/reduce/${gh.chiTietSanPhamId}" class="btn btn-outline">-</a>
+                                    <input disabled type="text" class="form-control" value="${gh.soLuong}"/>
+                                    <a href="/gioHang/increase/${gh.chiTietSanPhamId}" class="btn btn-outline">+</a>
+                                </div>
+                            </td>
+                            <td style="font-weight: bold;color: red">$${gh.gia}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-6">
-            <h5>${productDetail.tenHinhAnh}</h5>
-            <p>${productDetail.daBan} <span class="daBan">Đã bán</span></p>
-            <p class="gia">$${productDetail.gia}</p>
-            <div class="product-content-product-color">
-                <p><span style="font-weight: bold;">Color: </span><span class="product-content-product-color-name">${productDetail.mauSac.tenMauSac}</span></p>
-                <ul class="list-inline">
-                    <c:forEach items="${listColor}" var="color">
+        <div class="col-4">
+            <div class="table-responsive">
+                <div class="checkout">
+                    <p>Chúc mừng! Bạn đã được miễn phí vận chuyển!</p>
+                    <div class="total">
+                        <span>Mặt hàng(s) tổng tiền</span>
                         <c:choose>
-                            <c:when test="${color.chiTietSanPhamId == productDetail.idChiTietSanPham}">
-                                <li class="list-inline-item">
-                                    <a href="/chiTietSanPham/indexcus/${color.chiTietSanPhamId}" class="product-content-product-color-img-active">
-                                        <img src="/assets/img/color/${color.hinhAnh}" alt="" value="${color.idMauSac}" />
-                                    </a>
-                                </li>
+                            <c:when test="${listCartDetail == null}">
+                                <span class="after" style="font-weight: bold;color: red">$0</span>
                             </c:when>
                             <c:otherwise>
-                                <li class="list-inline-item">
-                                    <a href="/chiTietSanPham/indexcus/${color.chiTietSanPham}" class="product-content-product-color-img">
-                                        <img src="/assets/img/color/${color.hinhAnh}" alt="" value="${color.idMauSac}" />
-                                    </a>
-                                </li>
+                                <span class="after" style="font-weight: bold;color: red">$${cart.tongTien}</span>
                             </c:otherwise>
                         </c:choose>
-                    </c:forEach>
-                </ul>
+                    </div>
+                    <div class="ship">
+                        <div>
+                            <span>Giao Hàng</span>
+                            <span class="after">0vnđ</span>
+                        </div>
+                        <div>
+                            <span class="location">(To Hanoi)</span>
+                            <span class="delivery-fee">30.000vnđ</span>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="total-item">
+                        <c:choose>
+                            <c:when test="${listCartDetail == null}">
+                                <span>Total (0 mặt hàng)</span>
+                                <span class="after" style="font-weight: bold;color: red">$0</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span>Total (${cart.soLuong} mặt hàng)</span>
+                                <span class="after" style="font-weight: bold;color: red">$${cart.tongTien}</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div class="d-grid">
+                        <a href="/bill/payment" class="btn">Thanh toán</a>
+                    </div>
+                </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-3 my-2">
-                    <span class="text-content">Quantity</span>
-                </div>
-                <div class="col-3">
-                    <div class="input-group mb-3">
-                        <a href="/chiTietSanPham/reduce/${productDetail.idChiTietSanPham}" class="btn btn-outline">-</a>
-                        <input disabled type="text" class="form-control" value="${productDetail.quantity}"/>
-                        <a href="/chiTietSanPham/increase/${productDetail.idChiTietSanPham}" class="btn btn-outline">+</a>
-                    </div>
-                </div>
-                <div class="col-6 my-2">
-                    <span class="text-content">${productDetail.soLuong} Sản phẩm có sẵn</span>
-                </div>
-            </div>
-            <div class="d-grid gap-2">
-                <div class="row">
-                    <div class="col-10">
-                        <a class="btn btn-outline" href="/cart/add/${productDetail.idChiTietSanPham}">
-                            ADD TO CART
-                        </a>
-                    </div>
-                    <c:if test="${CustomerName != null}">
-                        <form class="col-2" action="/favor/like/${productDetail.idChiTietSanPham}" method="post">
-                            <button type="submit" class="fa fa-heart-o"></button>
-                        </form>
-                    </c:if>
-                </div>
-                <button class="btn" type="button">Mua ngay</button>
-            </div>
-            <br>
-            <strong>Cam kết của NewSeven</strong>
-            <ul class="list-unstyled">
-                <li>
-                    <i class="fa fa-check">
-                       Đảm bảo hàng chính hãng chất lượng 100%
-                    </i>
-                </li>
-                <li>
-                    <i class="fa fa-check">
-                       Sản phẩm mới nhất
-                    </i>
-                </li>
-                <li>
-                    <i class="fa fa-check">
-                        Phục vụ đến khi bạn hài lòng
-                    </i>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="recently">
-        <p>Sản phẩm đã xem gần đây</p>
-        <div class="row">
-            <c:forEach items="${listProduct}" var="sp">
-                <div class="col-md-3 col-6">
-                    <div class="thumnail">
-                        <a href="/chiTietSanPham/indexcus/${sp.chiTietSanPhamId}">
-                            <img src="/assets/img/sanPham/${sp.hinhAnh}">
-                            <div class="caption">
-                                <p>${sp.name}</p>
-                                <span class="gia">$${sp.giaBan}</span>
-                                <span class="daBan">${sp.daBan} sold</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-    <br/>
-    <div class="recently">
-        <p>Bạn cũng có thể thích</p>
-        <div class="row">
-            <c:forEach items="${listProduct}" var="sp">
-                <div class="col-md-3 col-6">
-                    <div class="thumnail">
-                        <a href="/chiTietSanPham/indexcus/${sp.chiTietSanPhamId}">
-                            <img src="/assets/img/sanPham/${sp.hinhAnh}">
-                            <div class="caption">
-                                <p>${sp.tenSanPham}</p>
-                                <span class="gia">$${sp.giaBan}</span>
-                                <span class="daBan">${sp.daBan} Đã bán</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
         </div>
     </div>
     <br/>
 </div>
-
-<script>
-    <%@include file="logic.js" %>
-</script>

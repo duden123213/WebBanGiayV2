@@ -18,35 +18,35 @@
                         <%--                  <th scope="col">--%>
                         <%--                    <input class="form-check-input" type="checkbox" onchange="checkAll(this)" />--%>
                         <%--                  </th>--%>
-                        <th scope="col" class="text-sp"colspan="2">Product</th>
-                        <th scope="col" class="text-sp">Color</th>
-                        <th scope="col" class="text-sp">Quantity</th>
-                        <th scope="col" class="text-sp">Total</th>
+                        <th scope="col" class="text-sp"colspan="2">Sản Phâm</th>
+                        <th scope="col" class="text-sp">Màu sắc</th>
+                        <th scope="col" class="text-sp">Số lượng</th>
+                        <th scope="col" class="text-sp">Tổng tiền</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${listCartDetail}" var="gh">
                         <tr>
                             <td>
-                                <img src="/assets/img/product/${gh.image}" alt="" height="65px"/>
+                                <img src="/assets/img/sanPham/${gh.hinhAnh}" alt="" height="65px"/>
                             </td>
                             <td>
-                                <p>${gh.name}</p>
-                                <a href="/cart/delete/${gh.productDetailId}">
+                                <p>${gh.ten}</p>
+                                <a href="/gioHang/delete/${gh.chiTietSanPhamid}">
                                     <span class="fa fa-trash"></span>
                                 </a>
                             </td>
                             <td>
-                                <p>${gh.colorName}</p>
+                                <p>${gh.tenMau}</p>
                             </td>
                             <td>
                                 <div class="input-group mb-3">
-                                    <a href="/cart/reduce/${gh.productDetailId}" class="btn btn-outline">-</a>
-                                    <input disabled type="text" class="form-control" value="${gh.quantity}"/>
-                                    <a href="/cart/increase/${gh.productDetailId}" class="btn btn-outline">+</a>
+                                    <a href="/gioHang/reduce/${gh.chiTietSanPhamid}" class="btn btn-outline">-</a>
+                                    <input disabled type="text" class="form-control" value="${gh.soLuong}"/>
+                                    <a href="/gioHang/increase/${gh.chiTietSanPhamid}" class="btn btn-outline">+</a>
                                 </div>
                             </td>
-                            <td style="font-weight: bold;color: red">$${gh.productPrice}</td>
+                            <td style="font-weight: bold;color: red">$${gh.gia}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -56,43 +56,43 @@
         <div class="col-4">
             <div class="table-responsive">
                 <div class="checkout">
-                    <p>Congratulations! You've got free shipping!</p>
+                    <p>Chúc mừng! Bạn đã được miễn phí vận chuyển!</p>
                     <div class="total">
-                        <span>Item(s) total</span>
+                        <span>Mặt hàng(s) tổng tiền</span>
                         <c:choose>
                             <c:when test="${listCartDetail == null}">
                                 <span class="after" style="font-weight: bold;color: red">$0</span>
                             </c:when>
                             <c:otherwise>
-                                <span class="after" style="font-weight: bold;color: red">$${cart.totalMoney}</span>
+                                <span class="after" style="font-weight: bold;color: red">$${cart.tongTien}</span>
                             </c:otherwise>
                         </c:choose>
                     </div>
                     <div class="ship">
                         <div>
-                            <span>Shipping</span>
-                            <span class="after">$0</span>
+                            <span>Giao Hàng</span>
+                            <span class="after">0vnđ</span>
                         </div>
                         <div>
                             <span class="location">(To Hanoi)</span>
-                            <span class="delivery-fee">$1</span>
+                            <span class="delivery-fee">30.000vnđ</span>
                         </div>
                     </div>
                     <hr/>
                     <div class="total-item">
                         <c:choose>
                             <c:when test="${listCartDetail == null}">
-                                <span>Total (0 items)</span>
+                                <span>Total (0 mặt hàng)</span>
                                 <span class="after" style="font-weight: bold;color: red">$0</span>
                             </c:when>
                             <c:otherwise>
-                                <span>Total (${cart.quantity} items)</span>
-                                <span class="after" style="font-weight: bold;color: red">$${cart.totalMoney}</span>
+                                <span>Total (${cart.soLuong} mặt hàng)</span>
+                                <span class="after" style="font-weight: bold;color: red">$${cart.tongTien}</span>
                             </c:otherwise>
                         </c:choose>
                     </div>
                     <div class="d-grid">
-                        <a href="/bill/payment" class="btn">Check out</a>
+                        <a href="/bill/payment" class="btn">Thanh toán</a>
                     </div>
                 </div>
             </div>
