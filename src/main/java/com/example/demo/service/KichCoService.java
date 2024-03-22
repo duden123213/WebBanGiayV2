@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.entity.KichCo;
 import com.example.demo.entity.MauSac;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,13 +12,13 @@ import java.util.UUID;
 public interface KichCoService {
     ArrayList<KichCo> getAll();
 
-
+    Page<KichCo> getAllWithPagination(Pageable pageable);
 
     void save(KichCo kichCo);
 
-    void delete(UUID id);
+    void delete(UUID idKichCo);
 
-    void update(UUID id, KichCo kichCo);
+    void update(UUID idKichCo, KichCo kichCo);
 
-    MauSac getOne(UUID id);
+    KichCo getOne(UUID idKichCo);
 }
