@@ -66,8 +66,8 @@
             <div class="d-grid gap-2">
                 <div class="row">
                     <div class="col-10">
-                        <a class="btn btn-outline" href="/cart/add/${productDetail.id}">
-                            ADD TO CART
+                        <a class="btn btn-outline" href="/gioHang/add/${productDetail.id}">
+                            Thêm vào giỏ hàng
                         </a>
                     </div>
                     <c:if test="${CustomerName != null}">

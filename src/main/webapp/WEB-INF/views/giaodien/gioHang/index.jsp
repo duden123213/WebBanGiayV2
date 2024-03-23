@@ -31,19 +31,19 @@
                                 <img src="/assets/img/sanPham/${gh.hinhAnh}" alt="" height="65px"/>
                             </td>
                             <td>
-                                <p>${gh.tenSanPham}</p>
-                                <a href="/gioHang/delete/${gh.chiTietSanPhamId}">
+                                <p>${gh.ten}</p>
+                                <a href="/gioHang/delete/${gh.chiTietSanPhamid}">
                                     <span class="fa fa-trash"></span>
                                 </a>
                             </td>
                             <td>
-                                <p>${gh.tenMauSac}</p>
+                                <p>${gh.tenMau}</p>
                             </td>
                             <td>
                                 <div class="input-group mb-3">
-                                    <a href="/gioHang/reduce/${gh.chiTietSanPhamId}" class="btn btn-outline">-</a>
+                                    <a href="/gioHang/reduce/${gh.chiTietSanPhamid}" class="btn btn-outline">-</a>
                                     <input disabled type="text" class="form-control" value="${gh.soLuong}"/>
-                                    <a href="/gioHang/increase/${gh.chiTietSanPhamId}" class="btn btn-outline">+</a>
+                                    <a href="/gioHang/increase/${gh.chiTietSanPhamid}" class="btn btn-outline">+</a>
                                 </div>
                             </td>
                             <td style="font-weight: bold;color: red">$${gh.gia}</td>

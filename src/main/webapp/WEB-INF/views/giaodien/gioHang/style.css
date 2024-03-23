@@ -1,0 +1,78 @@
+.form-check-input:checked {
+    background-color: #FFB800 !important;
+    border-color: #FFB800 !important;
+}
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem #ffe5a3 !important;
+}
+.table-responsive{
+    background-color: white !important;
+    padding: 0 1rem;
+}
+td>.input-group{
+    width: 7rem;
+    height: 40px;
+    border: 1px solid black;
+    background-color: white !important;
+    border-radius: 2rem;
+}
+td>.input-group>input{
+    height: 38px;
+}
+.input-group>.form-control:focus{
+    box-shadow: 0 0 0 0.25rem #7A7A7A;
+}
+.btn-outline{
+    color: black !important;
+    background-color: white !important;
+}
+.btn-outline:hover{
+    color: white !important;
+    background-color: #00575C !important;
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+    background-color: #FFB800 !important;
+}
+.checkout{
+    padding: 20px;
+}
+.checkout>p{
+    color: #00575C;
+}
+.total{
+    margin: 1rem 0;
+}
+.total-item{
+    margin: 1rem 0;
+}
+.after{
+    float: right;
+}
+.ship>div{
+    display: block;
+}
+.location{
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #7A7A7A;
+}
+.delivery-fee{
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-decoration: line-through;
+    color: #7A7A7A;
+    float: right;
+}
+.d-grid>.btn{
+    border-radius: 2rem;
+}
+.fa{
+    font-size: 20px !important;
+    color: #00575c;
+    transition: all 0.2s ease-in-out;
+}
+.fa:hover{
+    color: #FFB800;
+}
