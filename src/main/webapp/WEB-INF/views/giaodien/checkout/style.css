@@ -1,0 +1,19 @@
+.main-checkout{
+    padding: 2rem;
+    background-color: white;
+}
+.thankyou-order{
+    padding: 1.5rem;
+    background-color: #F7F7F7;
+    box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2), 0 1px 0 rgba(0,0,0,0.07), inset 0 0 0 1px rgba(0,0,0,0.05);
+}
+.thankyou-order-received{
+    color: #00575C;
+}
+.text-end{
+    text-align: end;
+}
+.money{
+    font-weight: bold;
+    color: red;
+}
