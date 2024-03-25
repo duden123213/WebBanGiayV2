@@ -65,7 +65,7 @@
             <div class="d-grid gap-2">
                 <div class="row">
                     <div class="col-10">
-                        <a class="btn btn-outline" href="/cart/add/${productDetail.id}">
+                        <a class="btn btn-outline" href="/gioHang/add/${productDetail.id}">
                             ADD TO CART
                         </a>
                     </div>

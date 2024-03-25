@@ -11,13 +11,13 @@
     <br/>
     <div class="row main-checkout">
         <div class="col-7">
-            <h2>Order details</h2>
+            <h2>Chi tiết đặt hàng</h2>
             <table class="table">
 
                 <thead>
                 <tr>
-                    <th>Product</th>
-                    <th class="text-end">Total</th>
+                    <th>Sản phẩm</th>
+                    <th class="text-end">Tổng tiền</th>
                 </tr>
                 </thead>
 
@@ -25,15 +25,15 @@
                 <c:forEach items="${billDetail}" var="b">
                     <tr>
                         <td>
-                            <a>${b.productName} - ${b.colorName}</a> <strong>×&nbsp;${b.quantity}</strong>
+                            <a>${b.tenSanPham} - ${b.tenMauSac}</a> <strong>×&nbsp;${b.soLuong}</strong>
                             <ul class="list-unstyled">
-                                <li><strong>Color:</strong>
-                                    <p>${b.colorName}</p>
+                                <li><strong>Màu sắc:</strong>
+                                    <p>${b.tenMauSac}</p>
                                 </li>
                             </ul>
                         </td>
                         <td style="text-align: right">
-                            <span><bdi class="money"><span>$</span>${b.productDetail.price}</bdi></span>
+                            <span><bdi class="money"><span>$</span>${b.chiTietSanPham.giaBan}</bdi></span>
                         </td>
                     </tr>
                 </c:forEach>
@@ -42,33 +42,22 @@
 
                 <tfoot>
                 <tr>
-                    <th scope="row">Subtotal:</th>
-                    <c:choose>
-                        <c:when test="${not empty usedVoucher}">
-                            <td class="text-end"><span class="money"><span>$</span>${usedVoucher.subTotal}</span></td>
-                        </c:when>
-                        <c:otherwise>
-                            <td class="text-end"><span class="money"><span>$</span>${bill.totalMoney}</span></td>
-                        </c:otherwise>
-                    </c:choose>
-                </tr>
-                <c:if test="${not empty voucher}">
-                    <tr>
-                        <th scope="row">Discount:</th>
-                        <td class="text-end"><span class="money"><span>$</span>${voucher.value}</span></td>
-                    </tr>
-                </c:if>
-                <tr>
-                    <th scope="row">Shipping:</th>
-                    <td class="text-end"><span><span>$</span>0</span>&nbsp;<small>via Delivery in Hanoi</small></td>
+                    <th scope="row">Tổng tiền:</th>
+
+
+                            <td class="text-end"><span class="money"><span>$</span>${bill.tongTien}</span></td>
+
+
+                    <th scope="row">Giao hàng:</th>
+                    <td class="text-end"><span><span>$</span>0</span>&nbsp;<small>giao hàng tại Hà Nội</small></td>
                 </tr>
                 <tr>
-                    <th scope="row">Payment methods:</th>
-                    <td class="text-end">${bill.payment.name}</td>
+                    <th scope="row">Phương thức thanh toán:</th>
+                    <td class="text-end">${bill.phuongThucThanhToan.tenPhuongThucThanhToan}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Total Money:</th>
-                    <td class="text-end"><span class="money"><span>$</span>${bill.totalMoney}</span></td>
+                    <th scope="row">Tổng tiền:</th>
+                    <td class="text-end"><span class="money"><span>$</span>${bill.tongTien}</span></td>
                 </tr>
                 </tfoot>
             </table>
@@ -76,21 +65,21 @@
         <div class="col-5">
             <div class="thankyou-order">
                 <p class="thankyou-order-received">
-                    <strong>Thank you. Your order has been received.</strong>
+                    <strong>"Cảm ơn bạn. Đơn đặt hàng của bạn đã được nhận."</strong>
                 </p>
 
                 <ul>
                     <li>
-                        Code orders: <strong>${bill.id}</strong>
+                        Mã đơn: <strong>${bill.idHoaDon}</strong>
                     </li>
                     <li>
-                        Day: <strong>${bill.createdDate}</strong>
+                        Ngày tạo: <strong>${bill.ngayTao}</strong>
                     </li>
                     <li>
-                        Total Money: <strong><span><bdi class="money"><span>$</span>${bill.totalMoney}</bdi></span></strong>
+                        Tổng tiền: <strong><span><bdi class="money">${bill.tongTien}<span>vnđ</span></bdi></span></strong>
                     </li>
                     <li>
-                        Payment methods: <strong>${bill.payment.name}</strong>
+                        Phương thức thanh toán: <strong>${bill.phuongThucThanhToan.tenPhuongThucThanhToan}</strong>
                     </li>
                 </ul>
             </div>
