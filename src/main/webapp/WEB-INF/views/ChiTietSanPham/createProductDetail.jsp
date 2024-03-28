@@ -24,7 +24,7 @@
                     <h5 className="card-title">ADD<span></span></h5>
                     <form method="post" action="/chiTietSanPham/add" enctype="multipart/form-data">
                         <div class="form-group">
-                            Màu
+                            Màu sắc
                             <select name="mauSac" class="form-select"  aria-label="Default select example">
                                 <c:forEach items="${listColor}" var="color">
                                     <option value="${color.idMauSac}">${color.tenMauSac}</option>
@@ -32,10 +32,18 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            Sản Phẩm
+                            Sản phẩm
                             <select name="sanPham" class="form-select"  aria-label="Default select example">
                                 <c:forEach items="${listProduct}" var="product">
                                     <option value="${product.idSanPham}">${product.tenSanPham}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            Kích cỡ
+                            <select name="kichCo" class="form-select"  aria-label="Default select example">
+                                <c:forEach items="${listKichCo}" var="kichCo">
+                                    <option value="${kichCo.idKichCo}">${kichCo.tenKichCo}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -45,7 +53,7 @@
                         </div>
                         <div>
                             Giá bán
-                            <input class="form-control" name="price" >
+                            <input class="form-control" name="giaBan" >
                         </div>
                         <div>
                             Số lượng

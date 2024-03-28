@@ -22,6 +22,7 @@ public class SanPhamRequest {
     private Integer trangThai;
     private String moTa;
     private UUID mauSac;
+    private UUID kichCo;
     private UUID sanPham;
 
 }
