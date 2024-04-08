@@ -1,15 +1,17 @@
 package com.example.demo.entity.ViewModels;
 
+import com.example.demo.entity.KichCo;
 import com.example.demo.entity.MauSac;
 import com.example.demo.entity.SanPham;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.UUID;
-
+@Data
 public class ViewSanPhamChiTiet {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,6 +27,7 @@ public class ViewSanPhamChiTiet {
     private String moTa;
     private SanPham sanPham;
     private MauSac mauSac;
+    private KichCo kichCo;
 
     public ViewSanPhamChiTiet() {
     }

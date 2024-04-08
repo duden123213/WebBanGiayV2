@@ -1,10 +1,12 @@
 package com.example.demo.service.serviceimpl;
 
 import com.example.demo.entity.ChiTietSanPham;
+import com.example.demo.entity.KichCo;
 import com.example.demo.entity.MauSac;
 import com.example.demo.entity.SanPham;
 import com.example.demo.entity.ViewModels.ViewSanPhamChiTiet;
 import com.example.demo.repository.ChiTietSanPhamRepository;
+import com.example.demo.repository.KichCoRepository;
 import com.example.demo.repository.MauSacRepository;
 import com.example.demo.repository.SanPhamRepository;
 import com.example.demo.service.ChiTietSanPhamService;
@@ -25,6 +27,8 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     SanPhamRepository productResponsitory;
     @Autowired
     MauSacRepository colorResponsitory;
+    @Autowired
+    KichCoRepository kichCoRepository;
 
     @Override
     public void add(ChiTietSanPham productDetail) {
@@ -46,6 +50,8 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
         detail.setMoTa(productDetail.getMoTa());
         detail.setSanPham(productDetail.getSanPham());
         detail.setMauSac(productDetail.getMauSac());
+        detail.setKichCo(productDetail.getKichCo());
+
 //        detail.setListImages(productDetail.getListImages());
         responsitory.flush();
     }
@@ -59,6 +65,7 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
         for (ChiTietSanPham productDetail : productDetails) {
             SanPham product = productResponsitory.findById(productDetail.getSanPham().getIdSanPham()).get();
             MauSac color = colorResponsitory.findById(productDetail.getMauSac().getIdMauSac()).get();
+            KichCo kichCo = kichCoRepository.findById(productDetail.getKichCo().getIdKichCo()).get();
 
             if (product != null && color != null && product.getThuongHieu() == color.getThuongHieu()) {
                 ViewSanPhamChiTiet productDetailView = new ViewSanPhamChiTiet();
@@ -74,6 +81,7 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
                 productDetailView.setMoTa(product.getMoTa());
                 productDetailView.setSanPham(product);
                 productDetailView.setMauSac(color);
+                productDetailView.setKichCo(kichCo);
 
                 pdv.add(productDetailView);
             }
@@ -98,6 +106,7 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
         SanPham product = productResponsitory.findById(productDetail.getSanPham().getIdSanPham()).get();
         MauSac color = colorResponsitory.findById(productDetail.getMauSac().getIdMauSac()).get();
+        KichCo kichCo = kichCoRepository.findById(productDetail.getKichCo().getIdKichCo()).get();
 
         if (product != null && color != null /*&& product.getBrand() == color.getBrand()*/) {
             productDetailView.setTen(product.getTenSanPham());
@@ -105,6 +114,7 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
             productDetailView.setDaBan(product.getDaBan());
             productDetailView.setSanPham(product);
             productDetailView.setMauSac(color);
+            productDetailView.setKichCo(kichCo);
 
         }
 

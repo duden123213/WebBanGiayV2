@@ -23,9 +23,9 @@
         <div class="col-6">
             <h5>${productDetail.ten}</h5>
             <p>${productDetail.daBan} <span class="daBan">Đã bán</span></p>
-            <p class="giaBan">${productDetail.giaBan}vnđ</p>
+            <p class="giaBan">$${productDetail.giaBan}</p>
             <div class="product-content-product-color">
-                <p><span style="font-weight: bold;">Màu sắc: </span><span class="product-content-product-color-name">${productDetail.mauSac.tenMauSac}</span></p>
+                <p><span style="font-weight: bold;">Color: </span><span class="product-content-product-color-name">${productDetail.mauSac.tenMauSac}</span></p>
                 <ul class="list-inline">
                     <c:forEach items="${listColor}" var="color">
                         <c:choose>
@@ -47,6 +47,16 @@
                     </c:forEach>
                 </ul>
             </div>
+            <div class="product-content-product-color">
+                <p><span style="font-weight: bold;">Kích cỡ: </span><span class="product-content-product-color-name">${productDetail.kichCo.tenKichCo}</span></p>
+                <ul class="list-inline">
+                    <select ">
+                        <c:forEach items="${listKichCo}" var="kichCo">
+                            <option value="${kichCo.idKichCo}">${kichCo.tenKichCo}</option>
+                        </c:forEach>
+                    </select>
+                </ul>
+            </div>
             <div class="row mb-3">
                 <div class="col-3 my-2">
                     <span class="text-content">Số lượng</span>
@@ -66,7 +76,7 @@
                 <div class="row">
                     <div class="col-10">
                         <a class="btn btn-outline" href="/gioHang/add/${productDetail.id}">
-                            ADD TO CART
+                            Thêm vào giỏ hàng
                         </a>
                     </div>
                     <c:if test="${CustomerName != null}">
