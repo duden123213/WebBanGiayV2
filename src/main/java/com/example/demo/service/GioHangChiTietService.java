@@ -14,7 +14,11 @@ public interface GioHangChiTietService {
 
     ArrayList<ViewGioHangChiTiet> getGioHangChiTietByCustomerId(UUID khachHangId);
 
+
+
     List<GioHangChiTiet> getGioHangChiTietByCusId(UUID khachHangId);
+
+    long countItemsInCart(UUID customerId);
 
     GioHangChiTiet getOneGioHangChiTiet(UUID khachHangId, UUID chiTietSanPhamId);
 

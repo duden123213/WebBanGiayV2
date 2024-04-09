@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ChiTietSanPham;
-import com.example.demo.entity.HinhAnh;
-import com.example.demo.entity.MauSac;
-import com.example.demo.entity.SanPham;
+import com.example.demo.entity.*;
 import com.example.demo.request.SanPhamRequest;
 import com.example.demo.service.serviceimpl.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +27,8 @@ public class ChiTietSanPhamCotroller {
     @Autowired
     private MauSacServiceImpl colorServiceimpl;
     @Autowired
+    private KichCoServiceImpl kichCoServiceimpl;
+    @Autowired
     private ChiTietSanPhamServiceImpl productDetailServiceimpl;
     @Autowired
     private HinhAnhServiceImpl productImageServiceimpl;
@@ -44,6 +43,7 @@ public class ChiTietSanPhamCotroller {
     public String hienThi(Model model) {
         model.addAttribute("listProduct", productServiceimpl.getAll());
         model.addAttribute("listColor", colorServiceimpl.getAll());
+        model.addAttribute("listKichCo", kichCoServiceimpl.getAll());
         model.addAttribute("listProductImage", productImageServiceimpl.getAll());
         model.addAttribute("listProductDetail", productDetailServiceimpl.getAll());
         model.addAttribute("ProductDetail", new ChiTietSanPham());
@@ -55,6 +55,7 @@ public class ChiTietSanPhamCotroller {
     public String create(Model model) {
         model.addAttribute("listProduct", productServiceimpl.getAll());
         model.addAttribute("listColor", colorServiceimpl.getAll());
+        model.addAttribute("listKichCo", kichCoServiceimpl.getAll());
         model.addAttribute("listProductImage", productImageServiceimpl.getAll());
         model.addAttribute("listProductDetail", productDetailServiceimpl.getAll());
         model.addAttribute("ProductDetail", new ChiTietSanPham());
@@ -70,6 +71,7 @@ public class ChiTietSanPhamCotroller {
         model.addAttribute("image", productImageServiceimpl.getByChiTietSanPhamId(productDetailId).get(0));
         model.addAttribute("listImage", productImageServiceimpl.getByChiTietSanPhamId(productDetailId));
         model.addAttribute("listColor", colorServiceimpl.getAllByProductDetailId(productDetailId));
+        model.addAttribute("listKichCo", kichCoServiceimpl.getAllByProductDetailId(productDetailId));
         model.addAttribute("view", "/detail/index.jsp");
         return "/giaodien/index";
     }
@@ -120,6 +122,7 @@ public class ChiTietSanPhamCotroller {
         a.setNgayTao(java.sql.Date.valueOf(LocalDate.now()));
         a.setSanPham(SanPham.builder().idSanPham(sanPhamRequest.getSanPham()).build());
         a.setMauSac(MauSac.builder().idMauSac(sanPhamRequest.getMauSac()).build());
+        a.setKichCo(KichCo.builder().idKichCo(sanPhamRequest.getKichCo()).build());
         productDetailServiceimpl.add(a);
         for (MultipartFile file : files) {
             HinhAnh spa = new HinhAnh();
@@ -152,6 +155,7 @@ public class ChiTietSanPhamCotroller {
         existingProductDetail.setMoTa(sanPhamRequest.getMoTa());
         existingProductDetail.setSanPham(SanPham.builder().idSanPham(sanPhamRequest.getSanPham()).build());
         existingProductDetail.setMauSac(MauSac.builder().idMauSac(sanPhamRequest.getMauSac()).build());
+        existingProductDetail.setKichCo(KichCo.builder().idKichCo(sanPhamRequest.getKichCo()).build());
         existingProductDetail.setNgayTao(java.sql.Date.valueOf(LocalDate.now()));
         productDetailServiceimpl.update(id, existingProductDetail);
 //            if (files != null && !files.isEmpty()) {
@@ -182,6 +186,7 @@ public class ChiTietSanPhamCotroller {
     ) {
         model.addAttribute("listProduct", productServiceimpl.getAll());
         model.addAttribute("listColor", colorServiceimpl.getAll());
+        model.addAttribute("listKichCo", kichCoServiceimpl.getAll());
         model.addAttribute("listProductImage", productImageServiceimpl.getAll());
         model.addAttribute("listProductDetail", productDetailServiceimpl.getAll());
         model.addAttribute("listCategory", categoryServiceimpl.getAll());

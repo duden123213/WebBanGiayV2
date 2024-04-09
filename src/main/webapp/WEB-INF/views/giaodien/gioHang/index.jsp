@@ -92,7 +92,7 @@
                         </c:choose>
                     </div>
                     <div class="d-grid">
-                        <a href="/bill/payment" class="btn">Thanh toán</a>
+                        <a href="/hoaDon/thanhtoan" class="btn">Thanh toán</a>
                     </div>
                 </div>
             </div>

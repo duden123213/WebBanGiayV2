@@ -46,8 +46,8 @@ public class HinhAnhController {
     @PostMapping(value = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String upload(Model model,
                          @RequestParam("files") MultipartFile[] files,
-                         @RequestParam("staTus") Integer staTus,
-                         @RequestParam("productDetail") UUID id) {
+                         @RequestParam("trangThai") Integer staTus,
+                         @RequestParam("chiTietSanPham") UUID id) {
 
         String message = "";
         try {
@@ -78,7 +78,7 @@ public class HinhAnhController {
         } catch (Exception e) {
             message = "Fail to upload files!";
         }
-        return "redirect:/product_image/index";
+        return "redirect:/hinhAnh/index";
     }
 
     @GetMapping("/detail/{id}")
@@ -96,7 +96,7 @@ public class HinhAnhController {
     public String delete(Model model,
                          @PathVariable("id") UUID id) {
         hinhAnhService.delete(id);
-        return "redirect:/product_image/index";
+        return "redirect:/hinhAnh/index";
     }
 
 

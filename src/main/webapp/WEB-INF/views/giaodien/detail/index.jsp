@@ -47,6 +47,17 @@
                     </c:forEach>
                 </ul>
             </div>
+            <div class="product-content-product-color">
+                <p><span style="font-weight: bold;">Kích cỡ: </span><span class="product-content-product-color-name"></span></p>
+                <ul class="list-inline">
+                    <select ">
+                        <c:forEach items="${listKichCo}" var="kichCo">
+                            <a href="/chiTietSanPham/indexcus/${kichCo.chiTietSanPhamId}" class="product-content-product-color-img-active">
+                            <option value="${kichCo.id}">${kichCo.ten}</option>
+                        </c:forEach>
+                    </select>
+                </ul>
+            </div>
             <div class="row mb-3">
                 <div class="col-3 my-2">
                     <span class="text-content">Số lượng</span>
@@ -62,6 +73,9 @@
                 <div class="col-6 my-2">
                     <span class="text-content">${productDetail.soLuongTon} Sản phẩm có sẵn</span>
                 </div>
+            </div>
+            <div th:if="${message}" class="alert alert-warning" role="alert">
+                <span th:text="${message}"></span>
             </div>
             <div class="d-grid gap-2">
                 <div class="row">
@@ -83,12 +97,12 @@
             <ul class="list-unstyled">
                 <li>
                     <i class="fa fa-check">
-                       Đảm bảo hàng chính hãng chất lượng 100%
+                        Đảm bảo hàng chính hãng chất lượng 100%
                     </i>
                 </li>
                 <li>
                     <i class="fa fa-check">
-                       Sản phẩm mới nhất
+                        Sản phẩm mới nhất
                     </i>
                 </li>
                 <li>

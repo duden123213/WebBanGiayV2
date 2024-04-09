@@ -50,6 +50,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            Kích cỡ :
+                            <select name="kichCo" class="form-select"  aria-label="Default select example">
+                                <c:forEach items="${listKichCo}" var="kichCo">
+                                    <option value="${kichCo.idKichCo}">${kichCo.tenKichCo}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             Sản Phẩm :
                             <select name="sanPham" class="form-select"  aria-label="Default select example">
                                 <c:forEach items="${listProduct}" var="product">

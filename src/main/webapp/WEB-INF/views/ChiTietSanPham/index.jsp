@@ -38,6 +38,7 @@
                             <th>Ngày tạo</th>
                             <th>Trạng thái</th>
                             <th>Sản phẩm</th>
+                            <th>Kích cỡ</th>
                             <th>Màu sắc</th>
                             <th>Hình ảnh</th>
                             <th>Hành động</th>
@@ -52,6 +53,8 @@
                                 <td>${detailSP.ngayTao}</td>
                                 <td>${detailSP.trangThai == 0 ? "Còn hàng" : "Hết hàng"}</td>
                                 <td>${detailSP.sanPham.tenSanPham}</td>
+                                <td>${detailSP.kichCo.tenKichCo}</td>
+
                                 <td>
                                     <img src="/assets/img/color/${detailSP.mauSac.hinhAnh}" height="100px" width="100px"></td>
                                 <td>
