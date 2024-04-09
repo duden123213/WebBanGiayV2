@@ -20,4 +20,6 @@ public interface GioHangChiTIetRepository extends JpaRepository<GioHangChiTiet, 
             "JOIN ChiTietSanPham c ON a.chiTietSanPham.idChiTietSanPham = c.idChiTietSanPham " +
             "WHERE b.khachHang.idKhachHang = :khachHangId AND c.idChiTietSanPham = :chiTietSanPhamId")
     GioHangChiTiet getOneGioHangChiTiet(UUID khachHangId, UUID chiTietSanPhamId);
+
+    long countByGioHang_IdGioHang(UUID idGioHang);
 }

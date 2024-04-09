@@ -22,6 +22,8 @@ public class ThanhToanContoller {
     HttpSession session;
     @Autowired
     KhachHangServiceImpl customerService;
+
+
     @Autowired
     GioHangServiceImpl cartService;
     @Autowired
@@ -61,6 +63,7 @@ public class ThanhToanContoller {
             model.addAttribute("cart", cartSession);
             model.addAttribute("cartDetail", cartDetailSession);
         }
+
         model.addAttribute("view", "/thanhToan/index.jsp");
         return "/giaodien/index";
     }
@@ -131,7 +134,11 @@ public class ThanhToanContoller {
                 SanPham product = productService.getOne(lstItem.getSanPhamId());
                 product.setSoLuong(product.getSoLuong() - lstItem.getSoLuong());
                 product.setDaBan(product.getDaBan() + lstItem.getSoLuong());
-
+                if (product.getSoLuong() <= 0) {
+                    // Tạo thông báo thông báo cho người dùng
+                    // Ví dụ: thông báo sản phẩm đã hết hàng
+                    redirectAttributes.addFlashAttribute("productOutOfStock", product.getTenSanPham() + " is out of stock");
+                }
                 ChiTietHoaDon billDetail = new ChiTietHoaDon();
                 billDetail.setIdChiTietHoaDon(UUID.randomUUID());
                 billDetail.setSoLuong(lstItem.getSoLuong());
@@ -183,7 +190,11 @@ public class ThanhToanContoller {
                 SanPham product = productService.getOne(lstItem.getSanPhamId());
                 product.setSoLuong(product.getSoLuong() - lstItem.getSoLuong());
                 product.setDaBan(product.getDaBan() + lstItem.getSoLuong());
-
+                if (product.getSoLuong() <= 0) {
+                    // Tạo thông báo thông báo cho người dùng
+                    // Ví dụ: thông báo sản phẩm đã hết hàng
+                    redirectAttributes.addFlashAttribute("productOutOfStock", product.getTenSanPham() + " is out of stock");
+                }
                 ChiTietHoaDon billDetail = new ChiTietHoaDon();
                 billDetail.setIdChiTietHoaDon(UUID.randomUUID());
                 billDetail.setSoLuong(lstItem.getSoLuong());

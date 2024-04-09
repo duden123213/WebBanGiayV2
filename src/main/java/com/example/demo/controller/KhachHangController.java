@@ -32,8 +32,7 @@ public class KhachHangController {
     @Autowired
     GioHangChiTietServiceImpl cartdetailService;
 
-//    @Autowired
-//    private ModelMapper modelMapper;
+
 
     @GetMapping("/index")
     public String HienThi(Model model, HttpSession session, @RequestParam(value = "pageNo", defaultValue = "0") Integer page) {
@@ -99,7 +98,7 @@ public class KhachHangController {
                           Model model) {
         if (username == "" || password == "") {
             model.addAttribute("erTrongCustomer", "Vui lòng nhập thông tin đầy đủ !!!");
-            return "/customerFE/login/index";
+            return "/giaodien/login/index";
         } else {
             KhachHang checkLogin = khachHangService.login(username, password);
             if (!(checkLogin == null)) {

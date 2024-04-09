@@ -66,18 +66,18 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/dsyt/indexcus">
                                 <span class="fa fa-heart"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/hoaDon/indexcus">
                                 <span class="fa fa-sticky-note"></span>
                             </a>
                         </li>
                     </c:if>
                     <li>
-                        <a href="#">
+                        <a href="/viewGioHang">
                             <span class="fa fa-shopping-cart"></span>
                         </a>
                     </li>

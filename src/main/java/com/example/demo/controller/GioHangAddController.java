@@ -215,13 +215,14 @@ public class GioHangAddController {
     }
 
     @GetMapping("/gioHang/reduce/{id}")
-    public String ReduceCart(@PathVariable("id") UUID id) {
+    public String ReduceCart(@PathVariable("id") UUID id, Model model) {
         ChiTietSanPham productDetail = productDetailServiceimpl.getOne(id);
 
         if (productDetail == null) {
             // Xử lý trường hợp sản phẩm không tồn tại, ví dụ: thông báo lỗi.
             return "redirect:/error";
         }
+        String message = ""; // Biến lưu thông báo
 
         if (httpSession.getAttribute("CustomerName") != null) {
             String username = (String) httpSession.getAttribute("CustomerName");
@@ -237,7 +238,7 @@ public class GioHangAddController {
                 cartDetailService.update(cartDetail.getIdGioHangChiTiet(), cartDetail);
             } else {
                 cartDetailService.delete(cartDetail.getIdGioHangChiTiet());
-                cart.setSoLuong(cart.getSoLuong() - 1);
+                message = "Sản phẩm đã hết trong giỏ hàng.";
             }
             cartService.update(cart.getIdGioHang(), cart);
         } else {
@@ -271,6 +272,7 @@ public class GioHangAddController {
                 }
             }
         }
+        model.addAttribute("message", message); // Truyền thông báo đến view
         return "redirect:/viewGioHang";
     }
 

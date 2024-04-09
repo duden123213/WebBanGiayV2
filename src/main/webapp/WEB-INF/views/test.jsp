@@ -1,155 +1,77 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <style>
-        <%@include file="style.css" %>
-    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style><%@include file="style.css"%></style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Document</title>
 </head>
 
-<br/>
+<body>
 <div class="container">
-    <div class="row">
-        <div class="col-6 row">
-            <div class="product-content-big-img col-9">
-                <img src="/assets/img/sanPham/${image.tenHinhAnh}" alt="" />
-            </div>
-            <div class="product-content-small-img col-3">
-                <c:forEach items="${listImage}" var="sp">
-                    <img src="/assets/img/sanPham/${sp.tenHinhAnh}" alt="" />
-                </c:forEach>
-            </div>
-        </div>
-        <div class="col-6">
-            <h5>${productDetail.ten}</h5>
-            <p>${productDetail.daBan} <span class="daBan">Đã bán</span></p>
-            <p class="giaBan">$${productDetail.giaBan}</p>
-            <div class="product-content-product-color">
-                <p><span style="font-weight: bold;">Color: </span><span class="product-content-product-color-name">${productDetail.mauSac.tenMauSac}</span></p>
-                <ul class="list-inline">
-                    <c:forEach items="${listColor}" var="color">
-                        <c:choose>
-                            <c:when test="${color.chiTietSanPhamId == productDetail.id}">
-                                <li class="list-inline-item">
-                                    <a href="/chiTietSanPham/indexcus/${color.chiTietSanPhamId}" class="product-content-product-color-img-active">
-                                        <img src="/assets/img/color/${color.hinhAnh}" alt="" value="${color.id}" />
-                                    </a>
-                                </li>
-                            </c:when>
-                            <c:otherwise>
-                                <li class="list-inline-item">
-                                    <a href="/chiTietSanPham/indexcus/${color.chiTietSanPhamId}" class="product-content-product-color-img">
-                                        <img src="/assets/img/color/${color.hinhAnh}" alt="" value="${color.id}" />
-                                    </a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                </ul>
-            </div>
-            <div class="product-content-product-color">
-                <p><span style="font-weight: bold;">Kích cỡ: </span><span class="product-content-product-color-name">${productDetail.kichCo.tenKichCo}</span></p>
-                <ul class="list-inline">
-                    <select ">
-                        <c:forEach items="${listKichCo}" var="kichCo">
-                            <option value="${kichCo.idKichCo}">${kichCo.tenKichCo}</option>
-                        </c:forEach>
-                    </select>
-                </ul>
-            </div>
-            <div class="row mb-3">
-                <div class="col-3 my-2">
-                    <span class="text-content">Số lượng</span>
-                </div>
-                <div class="col-3">
-                    <div class="input-group mb-3">
-                        <a href="/chiTietSanPham/reduce/${productDetail.id}" class="btn btn-outline">-</a>
-                        <input disabled type="text" class="form-control" value="${productDetail.soLuong}"/>
-                        <a href="/chiTietSanPham/increase/${productDetail.id}" class="btn btn-outline">+</a>
-                    </div>
-                </div>
-                <div class="col-6 my-2">
-                    <span class="text-content">${productDetail.soLuongTon} Sản phẩm có sẵn</span>
-                </div>
-            </div>
-            <div class="d-grid gap-2">
-                <div class="row">
-                    <div class="col-10">
-                        <a class="btn btn-outline" href="/gioHang/add/${productDetail.id}">
-                            Thêm vào giỏ hàng
-                        </a>
-                    </div>
-                    <c:if test="${CustomerName != null}">
-                        <form class="col-2" action="/favor/like/${productDetail.id}" method="post">
-                            <button type="submit" class="fa fa-heart-o"></button>
-                        </form>
-                    </c:if>
-                </div>
-                <button class="btn" type="button">Mua ngay</button>
-            </div>
-            <br>
-            <strong>Cam kết của NewSeven</strong>
-            <ul class="list-unstyled">
-                <li>
-                    <i class="fa fa-check">
-                        Đảm bảo hàng chính hãng chất lượng 100%
-                    </i>
-                </li>
-                <li>
-                    <i class="fa fa-check">
-                        Sản phẩm mới nhất
-                    </i>
-                </li>
-                <li>
-                    <i class="fa fa-check">
-                        Phục vụ đến khi bạn hài lòng
-                    </i>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="recently">
-        <p>Sản phẩm đã xem gần đây</p>
+    <nav class="nav-search">
         <div class="row">
-            <c:forEach items="${listProduct}" var="sp">
-                <div class="col-md-3 col-6">
-                    <div class="thumnail">
-                        <a href="/chiTietSanPham/indexcus/${sp.chiTietSanPhamId}">
-                            <img src="/assets/img/sanPham/${sp.hinhAnh}">
-                            <div class="caption">
-                                <p>${sp.tenSanPham}</p>
-                                <span class="gia">$${sp.gia}</span>
-                                <span class="daBan">${sp.daBan} sold</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
+            <div class="col-md-2 col-4">
+                <a href="/home"><img src="/assets/img/logo.png" class="logo" alt="logo" />
+                </a>
+            </div>
+            <div class="col-md-10 col-8">
+                <a href="#" class="link-text" id="help">Bạn cần giúp gì?</a>
+            </div>
         </div>
-    </div>
-    <br/>
-    <div class="recently">
-        <p>Bạn cũng có thể thích</p>
-        <div class="row">
-            <c:forEach items="${listProduct}" var="sp">
-                <div class="col-md-3 col-6">
-                    <div class="thumnail">
-                        <a href="/chiTietSanPham/indexcus/${sp.chiTietSanPhamId}">
-                            <img src="/assets/img/sanPham/${sp.hinhAnh}">
-                            <div class="caption">
-                                <p>${sp.tenSanPham}</p>
-                                <span class="gia">$${sp.gia}</span>
-                                <span class="daBan">${sp.daBan} Đã bán</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-    <br/>
+    </nav>
 </div>
+<div id="nav-bottom"></div>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-5">
+                <div class="form">
+                    <h3>Đăng nhập</h3>
+                    <div class="text-log">
+                        <span>Chào Mừng Bạn Đến Với NewSeven</span>
+                        <a href="/khachHang/signup" class="link-text">Tạo tài khoản</a>
+                    </div>
+                    <form action="/khachHang/loginOK" method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputUsername" class="form-label">Tên đăng nhập</label>
+                            <input class="form-control" id="exampleInputUsername" name="userName" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword" class="form-label">Mật Khẩu</label>
+                            <input type="password" class="form-control" id="exampleInputPassword" name="passWord"/>
+                        </div>
+                        <c:if test="${erTrongCustomer != null}" >
+                            <p style="color: red">${erTrongCustomer}</p>
+                        </c:if>
+                        <c:if test="${erCheckCustomer != null}" >
+                            <p style="color: red">${erCheckCustomer}</p>
+                        </c:if>
+                        <c:if test="${sigsUp != null}" >
+                            <p style="color: black">${sigsUp}</p>
+                        </c:if>
+                        <div class="d-grid">
+                            <button type="submit" class="btn login">Đăng Nhập</button>
+                        </div>
 
-<script>
-    <%@include file="logic.js" %>
-</script>
+                        <a href="/home"><img src="/assets/img/logo.png" class="logo" style="margin-top: 6rem;" alt="logo" /></a>
+                    </form>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <br />
+</div>
+</body>
+
+</html>

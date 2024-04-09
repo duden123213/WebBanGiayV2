@@ -15,6 +15,7 @@
             <h2>Thông tin thanh toán</h2>
 
             <form method="post" action="/hoaDon/placeorder">
+
                 <div class="form-group">
                     <label for="receiverName">Tên người nhận:</label>
                     <c:choose>
@@ -72,6 +73,9 @@
                         </c:otherwise>
                     </c:choose>
                 <div class="form-group">
+                <div class="alert alert-warning" th:if="${productOutOfStock != null}">
+                    <p th:text="${productOutOfStock}"></p>
+                </div>
                     <div class="py-3">
                         <label for="addressDelivery" class="form-label">Thanh toán:</label>
                         <input class="btn-check" value="2f7fbcf3-3007-4180-a5fe-84d2bcdf171b" type="radio"

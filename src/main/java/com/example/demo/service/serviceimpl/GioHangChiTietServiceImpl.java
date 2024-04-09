@@ -32,6 +32,10 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
     public ArrayList<GioHangChiTiet> getAll() {
         return (ArrayList<GioHangChiTiet>) gioHangChiTIetRepository.findAll();
     }
+    @Override
+    public long countItemsInCart(UUID customerId) {
+        return gioHangChiTIetRepository.countByGioHang_IdGioHang(customerId);
+    }
 
     @Override
     public ArrayList<ViewGioHangChiTiet> getGioHangChiTietByCustomerId(UUID khachHangId) {

@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta h   <meta charset="UTF-8" />ttp-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style><%@include file="style.css"%></style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,7 +36,7 @@
             <div class="col-6"></div>
             <div class="col-5">
                 <div class="form">
-                    <h3>Log in</h3>
+                    <h3>Đăng nhập</h3>
                     <div class="text-log">
                         <span>Chào Mừng Bạn Đến Với NewSeven</span>
                         <a href="/khachHang/signup" class="link-text">Tạo tài khoản</a>
@@ -44,11 +44,11 @@
                     <form action="/khachHang/loginOK" method="post">
                         <div class="mb-3">
                             <label for="exampleInputUsername" class="form-label">Tên đăng nhập</label>
-                            <input class="form-control" id="exampleInputUsername" name="username" />
+                            <input class="form-control" id="exampleInputUsername" name="userName" />
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword" class="form-label">Mật Khẩu</label>
-                            <input type="password" class="form-control" id="exampleInputPassword" name="password"/>
+                            <input type="password" class="form-control" id="exampleInputPassword" name="passWord"/>
                         </div>
                         <c:if test="${erTrongCustomer != null}" >
                             <p style="color: red">${erTrongCustomer}</p>

@@ -18,7 +18,7 @@
         </c:forEach>
     </div>
     <div class="frame">
-        <p>New Product</p>
+        <p>Sản phẩm mới</p>
         <div class="row">
             <c:forEach items="${productSortByCreatedDate}" var="sp">
                 <div class="col-md-3 col-6">
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="frame">
-        <p>Best selling</p>
+        <p>Sản phẩm bán chạy</p>
         <div class="row">
             <c:forEach items="${productSortBySold}" var="sp">
                 <div class="col-md-3 col-6">

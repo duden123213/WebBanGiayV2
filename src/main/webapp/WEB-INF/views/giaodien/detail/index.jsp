@@ -73,6 +73,9 @@
                     <span class="text-content">${productDetail.soLuongTon} Sản phẩm có sẵn</span>
                 </div>
             </div>
+            <div th:if="${message}" class="alert alert-warning" role="alert">
+                <span th:text="${message}"></span>
+            </div>
             <div class="d-grid gap-2">
                 <div class="row">
                     <div class="col-10">
