@@ -88,3 +88,35 @@
     <br/>
 </div>
 <br/>
+    <h1>Order Confirmation</h1>
+
+    <h2>Thông tin đơn hàng</h2>
+    <p>Mã đơn hàng: ${bill.idHoaDon}</p>
+    <p>Tổng tiền: ${bill.tongTien}</p>
+    <p>Trạng thái đơn hàng: ${bill.trangThaiHoaDon}</p>
+
+    <h2>Chi tiết đơn hàng</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each bill detail and display -->
+            <c:forEach items="${billDetail}" var="detail">
+                <tr>
+                    <td>${detail.chiTietSanPham.idChiTietSanPham}</td>
+                    <td>${detail.soLuong}</td>
+                    <td>${detail.gia}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
+    <!-- Display product out of stock message if any -->
+    <c:if test="${not empty productOutOfStock}">
+        <p style="color: red;">${productOutOfStock}</p>
+    </c:if>
