@@ -210,6 +210,38 @@ public class ThanhToanContoller {
         }
         return "redirect:/hoaDon/orderComplete/{billId}";
     }
+    @PostMapping("/updateProduct")
+    public String updateProduct(@RequestParam("productId") UUID productId,
+                                @RequestParam("newQuantity") int newQuantity,
+                                RedirectAttributes redirectAttributes) {
+        // Kiểm tra xem số lượng mới có hợp lệ không
+        if (newQuantity <= 0) {
+            redirectAttributes.addFlashAttribute("updateError", "Số lượng mới phải lớn hơn 0");
+            return "redirect:/hoaDon/thanhToan";
+        }
+
+        // Lấy thông tin sản phẩm từ cơ sở dữ liệu
+        SanPham product = productService.getOne(productId);
+
+        // Tính toán số lượng sản phẩm còn lại
+        int remainingQuantity = product.getSoLuong() - newQuantity;
+
+        // Kiểm tra xem số lượng còn lại có hợp lệ không
+        if (remainingQuantity < 0) {
+            redirectAttributes.addFlashAttribute("updateError", "Không đủ sản phẩm trong kho");
+            return "redirect:/hoaDon/thanhToan";
+        }
+
+        // Cập nhật số lượng sản phẩm và số lượng đã bán
+        product.setSoLuong(remainingQuantity);
+        product.setDaBan(product.getDaBan() + newQuantity);
+
+        // Lưu cập nhật vào cơ sở dữ liệu
+        productService.update(productId, product);
+
+        // Chuyển hướng trở lại trang thanh toán
+        return "redirect:/hoaDon/thanhToan";
+    }
 
     // Hiển thị trang hoàn thành đơn hàng
     @GetMapping("/orderComplete/{billId}")
