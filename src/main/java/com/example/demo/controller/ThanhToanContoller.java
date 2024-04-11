@@ -41,17 +41,23 @@ public class ThanhToanContoller {
     @Autowired
     PhuongThucThanhToanServiceImpl paymentService;
 
+    // Hiển thị trang thanh toán
     @GetMapping("/thanhtoan")
     public String checkout(Model model) {
+        // Kiểm tra xem người dùng đã đăng nhập chưa
         if (session.getAttribute("CustomerName") != null) {
             String username = (String) session.getAttribute("CustomerName");
+            // Lấy thông tin khách hàng
             KhachHang customer = customerService.getKhachHangByName(username);
+            // Lấy giỏ hàng của khách hàng
             var cart = cartService.getOne(customer.getIdKhachHang());
+            // Lấy danh sách chi tiết giỏ hàng
             var lstCartDetailView = cartDetailService.getGioHangChiTietByCusId(customer.getIdKhachHang());
             model.addAttribute("customer", customer);
             model.addAttribute("cart", cart);
             model.addAttribute("cartDetail", lstCartDetailView);
         } else {
+            // Nếu chưa đăng nhập, hiển thị trang thanh toán với thông tin trống
             KhachHang customer = new KhachHang();
             customer.setTenKhachHang("");
             customer.setSoDienThoai("");
@@ -64,10 +70,12 @@ public class ThanhToanContoller {
             model.addAttribute("cartDetail", cartDetailSession);
         }
 
+        // Trả về trang thanh toán
         model.addAttribute("view", "/thanhToan/index.jsp");
         return "/giaodien/index";
     }
 
+    // Xác nhận đơn hàng và thanh toán
     @PostMapping("/placeorder")
     public String confirm(Model model,
                           @RequestParam("receiverName") String receiverName,
@@ -77,35 +85,37 @@ public class ThanhToanContoller {
 
                           RedirectAttributes redirectAttributes
     ) {
-        boolean hasError = false; // Biến kiểm tra có lỗi nào xảy ra
+        boolean hasError = false;
 
+        // Kiểm tra dữ liệu nhập vào
         if (receiverName.isEmpty() || !receiverName.matches("^[a-zA-Z\\p{IsAlphabetic} ]+$")) {
             redirectAttributes.addFlashAttribute("receiverNameError", "Invalid Receiver Name (must not be blank and must only contain letters and spaces)");
-            hasError = true; // Đặt biến lỗi thành true
+            hasError = true;
         } else {
-            redirectAttributes.addAttribute("inputReceiverName", receiverName); // Giữ nguyên giá trị người dùng
+            redirectAttributes.addAttribute("inputReceiverName", receiverName);
         }
 
         if (customerPhone.isEmpty() || !customerPhone.matches("^\\d+$")) {
             redirectAttributes.addFlashAttribute("customerPhoneError", "Invalid KhachHang Phone (must not be blank and must be numeric)");
-            hasError = true; // Đặt biến lỗi thành true
-        }else {
-            redirectAttributes.addAttribute("inputCustomerPhone", customerPhone); // Giữ nguyên giá trị người dùng
+            hasError = true;
+        } else {
+            redirectAttributes.addAttribute("inputCustomerPhone", customerPhone);
         }
 
         if (addressDelivery.isEmpty()) {
             redirectAttributes.addFlashAttribute("addressDeliveryError", "Address Delivery is required");
-            hasError = true; // Đặt biến lỗi thành true
-        }else {
-            redirectAttributes.addAttribute("inputAddressDelivery", addressDelivery); // Giữ nguyên giá trị người dùng
+            hasError = true;
+        } else {
+            redirectAttributes.addAttribute("inputAddressDelivery", addressDelivery);
         }
 
         if (hasError) {
-            return "redirect:/hoaDon/thanhToan"; // Chuyển hướng đến trang thanh toán
+            return "redirect:/hoaDon/thanhToan";
         }
 
         Date currentDate = new Date(System.currentTimeMillis());
 
+        // Nếu khách hàng đã đăng nhập
         if (session.getAttribute("CustomerName") != null) {
             String username = (String) session.getAttribute("CustomerName");
             KhachHang customer = customerService.getKhachHangByName(username);
@@ -127,16 +137,11 @@ public class ThanhToanContoller {
 
             b = billService.add(bill);
 
-
-
-            // Tạo danh sách Chi Tiết Hóa Đơn
             for (var lstItem : lstCartDetailView) {
                 SanPham product = productService.getOne(lstItem.getSanPhamId());
                 product.setSoLuong(product.getSoLuong() - lstItem.getSoLuong());
                 product.setDaBan(product.getDaBan() + lstItem.getSoLuong());
                 if (product.getSoLuong() <= 0) {
-                    // Tạo thông báo thông báo cho người dùng
-                    // Ví dụ: thông báo sản phẩm đã hết hàng
                     redirectAttributes.addFlashAttribute("productOutOfStock", product.getTenSanPham() + " is out of stock");
                 }
                 ChiTietHoaDon billDetail = new ChiTietHoaDon();
@@ -145,8 +150,6 @@ public class ThanhToanContoller {
                 billDetail.setGia(lstItem.getGia());
                 billDetail.setHoaDon(b);
                 billDetail.setChiTietSanPham(productDetailServiceimpl.getOne(lstItem.getChiTietSanPhamid()));
-
-                // Lưu Chi Tiết Hóa Đơn vào cơ sở dữ liệu
                 billDetailService.add(billDetail);
                 productService.update(product.getIdSanPham(), product);
                 cartDetailService.delete(lstItem.getId());
@@ -156,9 +159,9 @@ public class ThanhToanContoller {
             cart.setTongTien(BigDecimal.ZERO);
             cart.setTrangThai(1);
             cartService.update(cart.getIdGioHang(), cart);
-            // Truyền tham số qua RedirectAttributes
             redirectAttributes.addAttribute("billId", b.getIdHoaDon() );
         } else {
+            // Nếu khách hàng chưa đăng nhập
             GioHang cartSession = (GioHang) session.getAttribute("GioHang");
             ArrayList<ViewGioHangChiTiet> cartDetailViewSession = (ArrayList<ViewGioHangChiTiet>) session.getAttribute("GioHangChiTiet");
             KhachHang customer = new KhachHang();
@@ -181,18 +184,11 @@ public class ThanhToanContoller {
 
             b = billService.add(bill);
 
-
-
-
-
-            // Tạo danh sách Chi Tiết Hóa Đơn
             for (var lstItem : cartDetailViewSession) {
                 SanPham product = productService.getOne(lstItem.getSanPhamId());
                 product.setSoLuong(product.getSoLuong() - lstItem.getSoLuong());
                 product.setDaBan(product.getDaBan() + lstItem.getSoLuong());
                 if (product.getSoLuong() <= 0) {
-                    // Tạo thông báo thông báo cho người dùng
-                    // Ví dụ: thông báo sản phẩm đã hết hàng
                     redirectAttributes.addFlashAttribute("productOutOfStock", product.getTenSanPham() + " is out of stock");
                 }
                 ChiTietHoaDon billDetail = new ChiTietHoaDon();
@@ -201,8 +197,6 @@ public class ThanhToanContoller {
                 billDetail.setGia(lstItem.getGia());
                 billDetail.setHoaDon(b);
                 billDetail.setChiTietSanPham(productDetailServiceimpl.getOne(lstItem.getChiTietSanPhamid()));
-
-                // Lưu Chi Tiết Hóa Đơn vào cơ sở dữ liệu
                 billDetailService.add(billDetail);
                 productService.update(product.getIdSanPham(), product);
                 ViewGioHangChiTiet cartDetailViewOld = lstItem;
@@ -212,12 +206,12 @@ public class ThanhToanContoller {
                 }
             }
             session.invalidate();
-            // Truyền tham số qua RedirectAttributes
             redirectAttributes.addAttribute("billId", b.getIdHoaDon());
         }
         return "redirect:/hoaDon/orderComplete/{billId}";
     }
 
+    // Hiển thị trang hoàn thành đơn hàng
     @GetMapping("/orderComplete/{billId}")
     public String orderComplete(@PathVariable("billId") UUID billId, Model model) {
         model.addAttribute("bill", billService.getOne(billId));
@@ -225,5 +219,4 @@ public class ThanhToanContoller {
         model.addAttribute("view", "/checkout/index.jsp");
         return "/giaodien/index";
     }
-
 }
