@@ -88,24 +88,28 @@
     <br/>
 </div>
 <br/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cập nhật sản phẩm</title>
-</head>
-<body>
-    <h1>Cập nhật sản phẩm và số lượng</h1>
 
+<div class="container">
+    <div class="row main-checkout">
+
+    <h2>Cập nhật sản phẩm và số lượng</h2> <br>
+    <table>
     <form action="/hoaDon/updateProduct" method="post">
-        <label for="productId">ID Sản phẩm:</label><br>
-        <input type="text" id="productId" name="productId"><br>
-
-        <label for="newQuantity">Số lượng mới:</label><br>
-        <input type="number" id="newQuantity" name="newQuantity" min="0"><br><br>
-
-        <button type="submit">Cập nhật</button>
+    <div class="mb-3">
+        <label for="productId" class="form-label">ID Sản phẩm:</label>
+        <input type="text" class="form-control" id="productId" name="productId">
+    </div>
+    <div class="mb-3">
+        <label for="newQuantity" class="form-label">Số lượng mới:</label>
+        <input type="number" class="form-control" id="newQuantity" name="productId" min="0">
+    </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success">Cập nhật</button>
+        </div>
     </form>
-</body>
-</html>
+    </table>
+    </div>
+</div>
+ <br>
+
+
