@@ -1,0 +1,45 @@
+.col-md-3{
+    margin-bottom: 2rem;
+}
+.content{
+    margin-bottom: 30px;
+}
+.text-content{
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 33px;
+    letter-spacing: 0em;
+    color: #00575C;
+}
+.available{
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 33px;
+    letter-spacing: 0em;
+    color: #7A7A7A;
+}
+.pagination{
+    justify-content: center;
+}
+.pagea-item-active .pagea-link{
+    background-color: #00575C4D;
+}
+.pagea-link{
+    display: block;
+    border-radius: 20px;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+.pagea-link:hover{    
+    background-color: #00575C4D;
+    transition: all 0.3s ease-in-out;
+}

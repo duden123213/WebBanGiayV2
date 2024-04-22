@@ -1,0 +1,72 @@
+.content{
+    margin-bottom: 1rem;
+}
+.account-name{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.link{
+    margin-bottom: 1rem;
+}
+.link-text{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-decoration: none;
+    text-align: left;
+    color: #000000;
+}
+.link-text:hover{
+    color: #FFB800;
+}
+.link-text-active{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-decoration: none;
+    text-align: left;
+    color: #00575C;
+}
+.link-text-active:hover{
+    color: #FFB800;
+}
+.link-text-logout{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-decoration: none;
+    text-align: left;
+    color: #00575C;
+}
+.link-text-logout:hover{
+    color: #FFB800;
+}
+.information{
+    padding: 2rem;
+    background-color: white;
+}
+.information>p{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 2rem;
+    color: #00575C;
+}
+.form-label{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.text-inf{
+    font-weight: 400;
+}
