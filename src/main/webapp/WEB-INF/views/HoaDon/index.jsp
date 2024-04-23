@@ -51,9 +51,17 @@
                                             <a href="/chiTietHoaDon/index/${bill.idHoaDon}" class="btn btn-success">Hiển thị</a>
 
                                             <c:if test="${bill.trangThaiHoaDon.idTrangThaiHoaDon ne '159b8bc3-5489-47c0-a115-b94a0cf6286f'}">
-                                                <form action="/hoaDon/cancel_bill/${bill.idHoaDon}" method="post">
-                                                    <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
-                                                </form>
+                                                <form id="cancelForm" action="/hoaDon/cancel_bill/${bill.idHoaDon}" method="post">
+                                                       <button type="button" class="btn btn-danger" onclick="confirmCancellation()">Hủy đơn hàng</button>
+                                                   </form>
+
+                                                   <script>
+                                                       function confirmCancellation() {
+                                                           if (confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
+                                                               document.getElementById('cancelForm').submit();
+                                                           }
+                                                       }
+                                                   </script>
                                             </c:if>
                                         </td>
                                     </tr>
