@@ -1,10 +1,13 @@
-package com.example.savis_intern_project.controller;
+package com.example.demo.controller;
 
 
-import com.example.savis_intern_project.entity.*;
-import com.example.savis_intern_project.entity.ViewModels.ProductView;
-import com.example.savis_intern_project.entity.ViewModels.WishListView;
-import com.example.savis_intern_project.service.serviceimpl.*;
+import com.example.demo.entity.DanhSachYeuThich;
+import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.SanPham;
+import com.example.demo.service.serviceimpl.DanhSachYeuThichServiceImpl;
+import com.example.demo.service.serviceimpl.KhachHangServiceImpl;
+import com.example.demo.service.serviceimpl.SanPhamServiceImpl;
+import com.example.demo.entity.ViewModels.ViewDanhSachYeuThich;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,26 +19,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/favor")
-public class FavoriteProductsController {
+@RequestMapping("/dsyt")
+public class DanhSachYeuThichController {
 
     @Autowired
     private HttpSession httpSession;
     @Autowired
-    WishListServiceimpl wishListServiceimpl;
+    DanhSachYeuThichServiceImpl dsytimpl;
     @Autowired
-    ProductServiceimpl productServiceimpl;
+    SanPhamServiceImpl productServiceimpl;
     @Autowired
-    CustomerServiceImpl customerServiceimpl;
+    KhachHangServiceImpl customerServiceimpl;
 
     @GetMapping("/index")
     public String hienThi(Model model) {
 
-        model.addAttribute("listFavor", wishListServiceimpl.getAll());
-        model.addAttribute("FavoriteProducts", new FavoriteProductsController());
+        model.addAttribute("listFavor", dsytimpl.getAll());
+        model.addAttribute("DanhSachYeuThichs", new DanhSachYeuThichController());
         model.addAttribute("listProduct", productServiceimpl.getAll());
         model.addAttribute("listCustomer", customerServiceimpl.findAll());
-        model.addAttribute("view", "/FavoriteProduct/index.jsp");
+        model.addAttribute("view", "/DanhSachYeuThich/index.jsp");
         return "index";
     }
 
@@ -46,63 +49,63 @@ public class FavoriteProductsController {
 
         if (httpSession.getAttribute("CustomerName") != null) {
             String username = (String) httpSession.getAttribute("CustomerName");
-            Customer customer = customerServiceimpl.getCustomerByName(username);
+            KhachHang customer = customerServiceimpl.getKhachHangByName(username);
             Pageable pageable = Pageable.ofSize(size).withPage(page);
-            Page<WishListView> entitiesPage = wishListServiceimpl.getAllByCustomerIdWithPagination(customer.getId(), pageable);
+            Page<ViewDanhSachYeuThich> entitiesPage = dsytimpl.getAllByCustomerIdWithPagination(customer.getIdKhachHang(), pageable);
             model.addAttribute("entitiesPage", entitiesPage);
             model.addAttribute("listFavor", entitiesPage.getContent());
             model.addAttribute("quantityFavor", entitiesPage.getContent().size());
         }
-        model.addAttribute("view", "/wishlist/index.jsp");
-        return "/customerFE/index";
+        model.addAttribute("view", "/dsyt/index.jsp");
+        return "/giaodien/index";
     }
 
     @PostMapping("/like/{id}")
     public String like(@PathVariable("id") UUID id) {
         if (httpSession.getAttribute("CustomerName") != null) {
             String username = (String) httpSession.getAttribute("CustomerName");
-            Customer customer = customerServiceimpl.getCustomerByName(username);
-            wishListServiceimpl.Like(customer.getId(), id);
+            KhachHang customer = customerServiceimpl.getKhachHangByName(username);
+            dsytimpl.Like(customer.getIdKhachHang(), id);
         }
-        return "redirect:/favor/indexcus";
+        return "redirect:/dsyt/indexcus";
     }
 
     @PostMapping("/add")
     public String add(Model model,
 
-                      @RequestParam("customer") Customer customer,
-                      @RequestParam("product") Product product
+                      @RequestParam("customer") KhachHang khachHang,
+                      @RequestParam("product") SanPham sanPham
 
 
     ) {
-        WishList wishList = new WishList(customer, product);
-        wishListServiceimpl.add(wishList);
-        return "redirect:/favor/index";
+        DanhSachYeuThich danhSachYeuThich = new DanhSachYeuThich(khachHang, sanPham);
+        dsytimpl.add(danhSachYeuThich);
+        return "redirect:/dsyt/index";
     }
 
     @GetMapping("/detail/{id}")
     public String detail(Model model,
                          @PathVariable("id") UUID id) {
-        model.addAttribute("listFavor", wishListServiceimpl.getAll());
-        model.addAttribute("spyt", wishListServiceimpl.getOne(id));
+        model.addAttribute("listFavor", dsytimpl.getAll());
+        model.addAttribute("spyt", dsytimpl.getOne(id));
         model.addAttribute("listCustomer", customerServiceimpl.findAll());
         model.addAttribute("listProduct", productServiceimpl.getAll());
-        model.addAttribute("view", "/FavoriteProduct/index.jsp");
+        model.addAttribute("view", "/DanhSachYeuThich/index.jsp");
         return "index";
     }
 
     @GetMapping("delete")
     public String delete(Model model,
                          @RequestParam("id") UUID id) {
-        wishListServiceimpl.delete(id);
-        return "redirect:/favor/index";
+        dsytimpl.delete(id);
+        return "redirect:/dsyt/index";
     }
 
     @PostMapping("/update/{id}")
     public String update(Model model,
                          @PathVariable("id") UUID id,
-                         @ModelAttribute("favoriteProducts") WishList wishList) {
-        wishListServiceimpl.update(id, wishList);
-        return "redirect:/favor/index";
+                         @ModelAttribute("favoriteProducts") DanhSachYeuThich wishList) {
+        dsytimpl.update(id, wishList);
+        return "redirect:/dsyt/index";
     }
 }

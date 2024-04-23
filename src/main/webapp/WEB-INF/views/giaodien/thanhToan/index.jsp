@@ -83,41 +83,36 @@
                         <label class="btn" for="flexRadioDefault1">
                             Tiền mặt
                         </label>
-                        <input class="btn-check" value="1f7fbcf3-3007-4180-a5fe-84d2bcdf171b" type="radio"
-                               name="PaymentId" id="flexRadioDefault2" checked>
-                        <label class="btn" for="flexRadioDefault2">
-                            Chuyển khoản
-                        </label>
+
                     </div>
                 </div>
                 <button type="submit" class="btn">Đặt hàng</button>
             </form>
         </div>
-        <div class="col-md-6">
-            <h2>Giỏ hàng của bạn</h2>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Sản phẩm </th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng tiền</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${cartDetail}" var="gh">
-                    <tr>
-                        <td>${gh.chiTietSanPham.sanPham.tenSanPham}</td>
-                        <td>${gh.gia}</td>
-                        <td >${gh.soLuong}</td>
-                        <td>${gh.chiTietSanPham.giaBan * gh.soLuong}VND</td>
-                    </tr>
-                </c:forEach>
-
-                </tbody>
-            </table>
-            <h4>Tổng tiền: ${cart.tongTien}</h4>
-        </div>
-    </div>
-</div>
-<br/>
+       <!-- Giỏ hàng -->
+              <div class="col-md-6">
+                  <h2>Giỏ hàng của bạn</h2>
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                          <th>Sản phẩm </th>
+                          <th>Giá</th>
+                          <th>Số lượng</th>
+                          <th>Tổng tiền</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <c:forEach items="${cartDetail}" var="gh">
+                          <tr>
+                              <td>${gh.chiTietSanPham.sanPham.tenSanPham}</td>
+                              <td>${gh.gia}</td>
+                              <td>${gh.soLuong}</td>
+                              <td>${gh.chiTietSanPham.giaBan * gh.soLuong}VND</td>
+                          </tr>
+                      </c:forEach>
+                      </tbody>
+                  </table>
+                  <h4>Tổng tiền: ${cart.tongTien}VND</h4>
+              </div>
+          </div>
+      </div>

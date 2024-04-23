@@ -12,24 +12,24 @@
     <div class="row">
         <div class="col-3">
             <div class="content">
-                <span class="account-name">${cus.fullname} Account </span>
-                <a href="/customer/logout" class="link-text-logout">(SignOut)</a>
+                <span class="account-name">${cus.tenKhachHang} Tài khoản </span>
+                <a href="/KhachHang/logout" class="link-text-logout">(Thoát)</a>
             </div>
             <div class="link">
-                <a href="/customer/indexcus" class="link-text">Account Info</a>
+                <a href="/KhachHang/indexcus" class="link-text">Thông tin tài khoản</a>
             </div>
             <div class="link">
-                <a href="/customer/indexcus/changeAccountInfo" class="link-text-active">Change Account Info</a>
+                <a href="/KhachHang/indexcus/changeAccountInfo" class="link-text-active">Thay đổi thông tin</a>
             </div>
         </div>
         <div class="col-9">
             <div class="information">
-                <p>Change Account Info</p>
-                <form method="post" action="/customer/updateCus/${cus.id}">
+                <p>Thay đổi thông tin tài khoản</p>
+                <form method="post" action="/khachHang/updateCus/${cus.idKhachHang}">
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label form-label">FullName</label>
+                        <label class="col-sm-2 col-form-label form-label">Tên</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="fullname" value="${cus.fullname}">
+                            <input type="text" class="form-control" name="tenKhachHang" value="${cus.tenKhachHang}">
                             <c:if test="${errName != null}" >
                                 <p style="color: red">${errName}</p>
                             </c:if>
@@ -39,7 +39,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label form-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="username" value="${cus.username}">
+                            <input type="text" class="form-control" name="userName" value="${cus.userName}">
                             <c:if test="${errUser != null}" >
                                 <p style="color: red">${errUser}</p>
                             </c:if>
@@ -51,16 +51,16 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" name="password" value="${cus.password}">
+                            <input type="password" class="form-control" name="passWord" value="${cus.passWord}">
                             <c:if test="${errPass != null}" >
                                 <p style="color: red">${errPass}</p>
                             </c:if>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label form-label">PhoneNumber</label>
+                        <label class="col-sm-2 col-form-label form-label">Số điện thoại</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name="phone" value="${cus.phone}">
+                            <input type="number" class="form-control" name="soDienThoai" value="${cus.soDienThoai}">
                             <c:if test="${errPhone != null}" >
                                 <p style="color: red">${errPhone}</p>
                             </c:if>
@@ -79,9 +79,9 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label form-label">Birthday</label>
+                        <label class="col-sm-2 col-form-label form-label">Ngày sinh</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" name="dateofbirth" value="${cus.dateofbirth}">
+                            <input type="date" class="form-control" name="ngaySinh" value="${cus.ngaySinh}">
                             <c:if test="${errDate != null}" >
                                 <p style="color: red">${errDate}</p>
                             </c:if>
@@ -91,21 +91,21 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label form-label">Gender</label>
+                        <label class="col-sm-2 col-form-label form-label">Giới tính</label>
                         <div class="col-sm-10">
-                            <select class="form-select" aria-label="Default select example" name="gender">
-                                <option value="0" ${ cus.gender == "0" ? "selected" : "" }>Male</option>
-                                <option value="1" ${ cus.gender == "1" ? "selected" : "" }>Female</option>
+                            <select class="form-select" aria-label="Default select example" name="gioiTinh">
+                                <option value="0" ${ cus.gioiTinh == "0" ? "selected" : "" }>Nam</option>
+                                <option value="1" ${ cus.gioiTinh == "1" ? "selected" : "" }>Nữ</option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label form-label">Address</label>
+                        <label class="col-sm-2 col-form-label form-label">Địa chỉ</label>
                         <div class="col-sm-10">
-                            <textarea type="text" class="form-control" name="address">${cus.address}</textarea>
+                            <textarea type="text" class="form-control" name="diaChi">${cus.diaChi}</textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn">Save</button>
+                    <button type="submit" class="btn">Lưu</button>
                 </form>
             </div>
         </div>

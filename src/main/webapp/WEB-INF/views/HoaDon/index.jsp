@@ -22,17 +22,14 @@
                 <!-- Recent Sales -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
-
-
                         <div class="card-body">
                             <h5 class="card-title">Hóa đơn <span>| </span></h5>
-
                             <table class="table table-hover datatable">
                                 <thead>
                                 <tr>
                                     <th>Tên người nhận</th>
                                     <th>Số điện thoại</th>
-                                    <th>Địa chỉ giao hang</th>
+                                    <th>Địa chỉ giao hàng</th>
                                     <th>Tổng tiền</th>
                                     <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
@@ -43,7 +40,6 @@
                                 <tbody>
                                 <c:forEach items="${listBill}" var="bill">
                                     <tr onclick="goToPage('/bill_detail/index/${bill.idHoaDon}')">
-
                                         <td>${bill.tenNguoiNhan}</td>
                                         <td>${bill.soDienThoai}</td>
                                         <td>${bill.diaChi}</td>
@@ -52,39 +48,29 @@
                                         <td>${bill.trangThaiHoaDon.tenTrangThaiHoaDon}</td>
                                         <td>${bill.phuongThucThanhToan.tenPhuongThucThanhToan}</td>
                                         <td>
-                                            <a href="/chiTietHoaDon/index/${bill.idHoaDon}" class="btn btn-success">Hiện thị</a>
-                                            <form action="/hoaDon/change_bill_status/${bill.idHoaDon}" method="post">
-                                                <button class=" ${bill.trangThaiHoaDon.idTrangThaiHoaDon!="159b8bc3-5489-47c0-a115-b94a0cf6286f"?"btn btn-warning":"btn btn-dark"}"
-                                                        onclick="return confirm('Bạn có muốn thay đổi trang thái?')"
-                                                    ${bill.trangThaiHoaDon.idTrangThaiHoaDon=="159b8bc3-5489-47c0-a115-b94a0cf6286f"?"disabled":""}>${bill.trangThaiHoaDon.idTrangThaiHoaDon=="159b8bc3-5489-47c0-a115-b94a0cf6286f"?"Xong":"Xác nhận"}</button>
-                                            </form>
+                                            <a href="/chiTietHoaDon/index/${bill.idHoaDon}" class="btn btn-success">Hiển thị</a>
+
+                                            <c:if test="${bill.trangThaiHoaDon.idTrangThaiHoaDon ne '159b8bc3-5489-47c0-a115-b94a0cf6286f'}">
+                                                <form action="/hoaDon/cancel_bill/${bill.idHoaDon}" method="post">
+                                                    <button type="submit" class="btn btn-danger">Hủy đơn hàng</button>
+                                                </form>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
-
                 </div><!-- End Recent Sales -->
-
             </div>
-
         </div><!-- End Left side columns -->
-
-
     </div><!-- End Right side columns -->
+</div>
 
-    </div>
-
-    <script>
-        function goToPage(url) {
-            window.location.href = url;
-        }
-    </script>
+<script>
+    function goToPage(url) {
+        window.location.href = url;
+    }
+</script>
 </section>
-
-
-

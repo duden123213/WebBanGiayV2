@@ -14,6 +14,17 @@
     text-align: left;
     color: #00575C;
 }
+.circle-badge {
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
 .col-5>.row{
     margin-bottom: 30px;
 }

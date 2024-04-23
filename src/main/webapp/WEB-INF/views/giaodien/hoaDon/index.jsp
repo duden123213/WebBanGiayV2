@@ -12,31 +12,31 @@
 <div class="container">
     <div class="card recent-sales overflow-auto">
         <div class="card-body">
-            <h5 class="card-title">Bill <span>| </span></h5>
+            <h5 class="card-title">Hóa đơn <span>| </span></h5>
 
             <table class="table table-hover datatable">
                 <thead>
                 <tr>
-                    <th>ReceiverName</th>
-                    <th>TotalMoney</th>
-                    <th>CustomerPhone</th>
-                    <th>AddressDelivery</th>
-                    <th>CreatedDate</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Tên người nhân</th>
+                    <th>Tổng tiền</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày tạo</th>
+                    <th>Trạng thái</th>
+                    <th>Hang động</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${listBill}" var="bill">
-                    <tr onclick="goToPage('/bill_detail/index/${bill.id}')">
-                        <td>${bill.receiverName}</td>
-                        <td>$${bill.totalMoney}</td>
-                        <td>${bill.customerPhone}</td>
-                        <td>${bill.addressDelivery}</td>
-                        <td>${bill.createdDate}</td>
-                        <td>${bill.billStatus.name}</td>
+                    <tr onclick="goToPage('/hoaDon/index/${bill.idHoaDon}')">
+                        <td>${bill.tenNguoiNhan}</td>
+                        <td>$${bill.tongTien}</td>
+                        <td>${bill.soDienThoai}</td>
+                        <td>${bill.diaChi}</td>
+                        <td>${bill.ngayTao}</td>
+                        <td>${bill.trangThaiHoaDon.tenTrangThaiHoaDon}</td>
                         <td>
-                            <a href="/bill/orderComplete/${bill.id}" class="btn">Detail</a>
+                            <a href="/hoaDon/orderComplete/${bill.idHoaDon}" class="btn">Detail</a>
                         </td>
                     </tr>
                 </c:forEach>

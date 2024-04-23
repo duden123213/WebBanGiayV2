@@ -10,14 +10,14 @@
     <div class="row">
         <div class="col-3">
             <div class="content">
-                <span class="account-name">${cus.fullname} Account </span>
-                <a href="/customer/logout" class="link-text-logout">(SignOut)</a>
+                <span class="account-name">${cus.tenKhachHang} Account </span>
+                <a href="/khachHang/logout" class="link-text-logout">(Thoát)</a>
             </div>
             <div class="link">
-                <a href="/customer/indexcus" class="link-text-active">Account Info</a>
+                <a href="/khachHang/indexcus" class="link-text-active">Thông tin tài khoản</a>
             </div>
             <div class="link">
-                <a href="/customer/indexcus/changeAccountInfo" class="link-text">Change Account Info</a>
+                <a href="/khachHang/indexcus/changeAccountInfo" class="link-text">Thay đổi thông tin</a>
             </div>
         </div>
         <div class="col-9">
@@ -25,36 +25,36 @@
                 <p>Account Info</p>
                 <form>
                     <div class="mb-3">
-                        <label class="form-label">FullName: </label>
-                        <label class="form-label text-inf">${cus.fullname}</label>
+                        <label class="form-label">Ho tên: </label>
+                        <label class="form-label text-inf">${cus.tenKhachHang}</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Username: </label>
-                        <label class="form-label text-inf">${cus.username}</label>
+                        <label class="form-label">Tên tài khoản: </label>
+                        <label class="form-label text-inf">${cus.userName}</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Password: </label>
-                        <input type="password" class="form-label text-inf password" value="${cus.password}">
+                        <label class="form-label">Mật khẩu: </label>
+                        <input type="password" class="form-label text-inf password" value="${cus.passWord}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">PhoneNumber: </label>
-                        <label class="form-label text-inf">${cus.phone}</label>
+                        <label class="form-label">Số điện thoại: </label>
+                        <label class="form-label text-inf">${cus.soDienThoai}</label>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email: </label>
                         <label class="form-label text-inf">${cus.email}</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Birthday: </label>
-                        <label class="form-label text-inf">${cus.dateofbirth}</label>
+                        <label class="form-label">Ngày sinh: </label>
+                        <label class="form-label text-inf">${cus.ngaySinh}</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Gender: </label>
-                        <label class="form-label text-inf">${cus.gender==1?"Male":"Female"}</label>
+                        <label class="form-label">Giới tính: </label>
+                        <label class="form-label text-inf">${cus.gioiTinh==1?"Nam":"Nữ"}</label>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Address: </label>
-                        <label class="form-label text-inf">${cus.address}</label>
+                        <label class="form-label">Địa chỉ: </label>
+                        <label class="form-label text-inf">${cus.diaChi}</label>
                     </div>
                 </form>
             </div>

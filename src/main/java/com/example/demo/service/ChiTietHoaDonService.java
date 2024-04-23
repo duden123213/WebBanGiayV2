@@ -12,6 +12,10 @@ import java.util.UUID;
 public interface ChiTietHoaDonService {
     void add(ChiTietHoaDon billDetail);
 
+    void updateProductsForBill(UUID billId, List<ChiTietHoaDon> billDetails);
+
+    void deleteProductsForBill(UUID billId);
+
     List<ChiTietHoaDon> getAllCTHD();
 
     List<ChiTietHoaDon> getAllById(UUID billId);
@@ -24,4 +28,5 @@ public interface ChiTietHoaDonService {
     ChiTietHoaDon getOneCTHD(UUID billDetailId);
 
     void delete(UUID billDetailId);
+
 }

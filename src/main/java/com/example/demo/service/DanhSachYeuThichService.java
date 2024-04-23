@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.DanhSachYeuThich;
+import com.example.demo.entity.ViewModels.ViewDanhSachYeuThich;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public interface DanhSachYeuThichService {
     void update(UUID id, DanhSachYeuThich danhSachYeuThich);
     void Like(UUID khachHangId, UUID chiTietSanPhamId);
     List<DanhSachYeuThich> getAll();
-    Page<DanhSachYeuThich> getAllByCustomerIdWithPagination(UUID id, Pageable pageable);
+    ArrayList<ViewDanhSachYeuThich> getAllByCustomerId(UUID id);
+    Page<ViewDanhSachYeuThich> getAllByCustomerIdWithPagination(UUID id, Pageable pageable);
     DanhSachYeuThich getOne(UUID id);
 }

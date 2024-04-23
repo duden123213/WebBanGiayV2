@@ -69,11 +69,27 @@ public class ChiTietHoaDonController {
                 billService.update(bill);
 
                 // Chuyển hướng đến trang thành công hoặc hiển thị thông báo thành công
-                return "redirect:/successPage";
+                return "redirect:/index";
             }
         }
         // Nếu không tìm thấy hóa đơn hoặc sản phẩm, chuyển hướng đến trang lỗi hoặc hiển thị thông báo lỗi
         return "redirect:/errorPage";
+    }
+    @PostMapping("/update/{billId}")
+    public String updateBill(@PathVariable("billId") UUID billId, @ModelAttribute("bill") HoaDon updatedBill) {
+        HoaDon existingBill = billService.getOne(billId);
+
+        if(existingBill != null) {
+            existingBill.setTenNguoiNhan(updatedBill.getTenNguoiNhan());
+            existingBill.setSoDienThoai(updatedBill.getSoDienThoai());
+            existingBill.setDiaChi(updatedBill.getDiaChi());
+            // Cập nhật các thuộc tính khác tương tự
+
+            billService.update(existingBill);
+            return "redirect:/index";  // Chuyển hướng sau khi cập nhật thành công
+        }
+
+        return "redirect:/errorPage"; // Chuyển hướng nếu không tìm thấy hóa đơn
     }
 
 }

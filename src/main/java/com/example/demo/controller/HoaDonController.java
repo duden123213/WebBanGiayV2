@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.ChiTietHoaDon;
 import com.example.demo.entity.HoaDon;
 import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.SanPham;
 import com.example.demo.service.serviceimpl.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +23,8 @@ import java.util.UUID;
 public class HoaDonController {
     @Autowired
     HoaDonServiceImpl billService;
+    @Autowired
+    SanPhamServiceImpl sanPhamService;
     @Autowired
     ChiTietHoaDonServiceImpl billDetailService;
     @Autowired
@@ -101,5 +105,40 @@ public class HoaDonController {
         billService.changeStatus(billId);
         return "redirect:/hoaDon/index";
     }
+    // Hủy đơn hàng
+    @PostMapping("/cancel_bill/{billId}")
+    public String cancelBill(Model model, @PathVariable("billId") UUID billId, RedirectAttributes redirectAttributes) {
+        // Lấy thông tin đơn hàng từ cơ sở dữ liệu
+        HoaDon bill = billService.getOne(billId);
 
+        // Kiểm tra xem đơn hàng có tồn tại không
+        if (bill == null) {
+            redirectAttributes.addFlashAttribute("cancelError", "Không tìm thấy đơn hàng");
+            return "redirect:/hoaDon/index";
+        }
+
+        // Kiểm tra trạng thái đơn hàng
+        if (!bill.getTrangThaiHoaDon().getIdTrangThaiHoaDon().equals(UUID.fromString("259b8bc3-5489-47c0-a115-b94a0cf6286f"))) {
+            redirectAttributes.addFlashAttribute("cancelError", "Không thể hủy đơn hàng này");
+            return "redirect:/hoaDon/index";
+        }
+
+        // Lấy danh sách chi tiết đơn hàng
+        var billDetails = billDetailService.getAllById(billId);
+
+        // Cập nhật số lượng sản phẩm đã bán và số lượng tồn kho
+        for (var billDetail : billDetails) {
+            SanPham product = billDetail.getChiTietSanPham().getSanPham();
+            product.setSoLuong(product.getSoLuong() + billDetail.getSoLuong());
+            product.setDaBan(product.getDaBan() - billDetail.getSoLuong());
+            sanPhamService.update(product.getIdSanPham(), product);
+        }
+
+        // Cập nhật trạng thái đơn hàng thành "Đã hủy"
+        bill.setTrangThaiHoaDon(billStatusService.findById(UUID.fromString("159b8bc3-5489-47c0-a115-b94a0cf6286f")));
+        billService.update(bill);
+
+        redirectAttributes.addFlashAttribute("cancelSuccess", "Đã hủy đơn hàng thành công");
+        return "redirect:/hoaDon/index";
+    }
 }

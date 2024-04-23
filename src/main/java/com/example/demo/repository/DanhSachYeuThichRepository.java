@@ -14,7 +14,7 @@ public interface DanhSachYeuThichRepository extends JpaRepository<DanhSachYeuThi
     @Query("SELECT a FROM DanhSachYeuThich a " +
             "JOIN KhachHang b ON a.khachHang.idKhachHang = b.idKhachHang " +
             "JOIN SanPham c ON a.sanPham.idSanPham = c.idSanPham " +
-            "WHERE b.idKhachHang = :idSanPham")
+            "WHERE b.idKhachHang = :id")
     List<DanhSachYeuThich> findByCustomerId(UUID id);
     @Query("SELECT a FROM DanhSachYeuThich a " +
             "JOIN KhachHang b ON a.khachHang.idKhachHang = b.idKhachHang " +

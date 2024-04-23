@@ -43,11 +43,9 @@
                 <tfoot>
                 <tr>
                     <th scope="row">Tổng tiền:</th>
-
-
-                            <td class="text-end"><span class="money"><span>$</span>${bill.tongTien}</span></td>
-
-
+                    <td class="text-end"><span class="money"><span>$</span>${bill.tongTien}</span></td>
+                </tr>
+                <tr>
                     <th scope="row">Giao hàng:</th>
                     <td class="text-end"><span><span>$</span>0</span>&nbsp;<small>giao hàng tại Hà Nội</small></td>
                 </tr>
@@ -88,24 +86,3 @@
     <br/>
 </div>
 <br/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cập nhật sản phẩm</title>
-</head>
-<body>
-    <h1>Cập nhật sản phẩm và số lượng</h1>
-
-    <form action="/hoaDon/updateProduct" method="post">
-        <label for="productId">ID Sản phẩm:</label><br>
-        <input type="text" id="productId" name="productId"><br>
-
-        <label for="newQuantity">Số lượng mới:</label><br>
-        <input type="number" id="newQuantity" name="newQuantity" min="0"><br><br>
-
-        <button type="submit">Cập nhật</button>
-    </form>
-</body>
-</html>
