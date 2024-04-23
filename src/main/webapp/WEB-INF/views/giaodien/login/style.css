@@ -1,5 +1,6 @@
 .logo{
     width: 100%;
+    border-radius: 20px;
 }
 .nav-search{
     margin: 1rem 0;
@@ -16,15 +17,20 @@
     margin: 1rem 0;
 }
 .main{
-    background-image: url('/static/assets/img/banner/banner3.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://sikido.vn/uploads/source/hinhanhh/26231544-406720329760652-93245680665125997-n.jpg'); /* Đường dẫn đến hình nền */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    height: 100vh;
 }
 .form{
     margin: 3rem 0 1rem 0;
     padding: 3rem;
-    height: 690px;
+    height: 400px;
     background-color: white;
+    border-radius: 30px;
 }
 .btn{
     color: white !important;
@@ -54,3 +60,4 @@
     font-weight: 400;
     color: #7A7A7A;
 }
+

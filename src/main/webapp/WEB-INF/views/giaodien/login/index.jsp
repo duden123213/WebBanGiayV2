@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta h   <meta charset="UTF-8" />ttp-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" ttp-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style><%@include file="style.css"%></style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,6 +18,7 @@
 </head>
 
 <body>
+<div class="main">
 <div class="container">
     <nav class="nav-search">
         <div class="row">
@@ -29,8 +32,6 @@
         </div>
     </nav>
 </div>
-<div id="nav-bottom"></div>
-<div class="main">
     <div class="container">
         <div class="row">
             <div class="col-6"></div>
@@ -39,7 +40,6 @@
                     <h3>Đăng nhập</h3>
                     <div class="text-log">
                         <span>Chào Mừng Bạn Đến Với NewSeven</span>
-                        <a href="/khachHang/signup" class="link-text">Tạo tài khoản</a>
                     </div>
                     <form action="/khachHang/loginOK" method="post">
                         <div class="mb-3">
@@ -62,15 +62,12 @@
                         <div class="d-grid">
                             <button type="submit" class="btn login">Đăng Nhập</button>
                         </div>
-
-                        <a href="/home"><img src="/assets/img/logo.png" class="logo" style="margin-top: 6rem;" alt="logo" /></a>
                     </form>
                 </div>
             </div>
-            <div class="col-1"></div>
         </div>
     </div>
-    <br />
+</div>
 </div>
 </body>
 
