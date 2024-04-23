@@ -51,17 +51,41 @@
                                             <a href="/chiTietHoaDon/index/${bill.idHoaDon}" class="btn btn-success">Hiển thị</a>
 
                                             <c:if test="${bill.trangThaiHoaDon.idTrangThaiHoaDon ne '159b8bc3-5489-47c0-a115-b94a0cf6286f'}">
-                                                <form id="cancelForm" action="/hoaDon/cancel_bill/${bill.idHoaDon}" method="post">
-                                                       <button type="button" class="btn btn-danger" onclick="confirmCancellation()">Hủy đơn hàng</button>
+                                               <button type="button" class="btn btn-danger" onclick="showCancelReason()">Hủy đơn hàng</button>
+
+                                                   <form id="cancelForm" action="/hoaDon/cancel_bill/${bill.idHoaDon}" method="post" style="display:none;">
+                                                       <div class="form-group">
+                                                           <label for="cancelReason">Lý do hủy đơn hàng:</label>
+                                                           <select class="form-control" id="cancelReason" name="cancelReason">
+                                                               <option value="Out of stock">Hết hàng</option>
+                                                               <option value="Change of mind">Thay đổi ý định</option>
+                                                               <option value="Delivery issues">Vấn đề giao hàng</option>
+                                                               <option value="Other">Lý do khác</option>
+                                                           </select>
+                                                       </div>
+
+                                                       <button type="button" class="btn btn-secondary" onclick="hideCancelReason()">Hủy</button>
+                                                       <button type="button" class="btn btn-danger" onclick="confirmCancellation()">Xác nhận hủy đơn hàng</button>
                                                    </form>
 
                                                    <script>
+                                                       function showCancelReason() {
+                                                           document.getElementById('cancelForm').style.display = 'block';
+                                                       }
+
+                                                       function hideCancelReason() {
+                                                           document.getElementById('cancelForm').style.display = 'none';
+                                                       }
+
                                                        function confirmCancellation() {
                                                            if (confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
                                                                document.getElementById('cancelForm').submit();
                                                            }
                                                        }
                                                    </script>
+                                            </c:if>
+                                            <c:if test="${bill.trangThaiHoaDon.idTrangThaiHoaDon eq '159b8bc3-5489-47c0-a115-b94a0cf6286f'}">
+                                                <p>Đơn hàng đã được hủy</p>
                                             </c:if>
                                         </td>
                                     </tr>
