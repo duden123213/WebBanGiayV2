@@ -83,6 +83,7 @@ public class ThanhToanContoller {
                           @RequestParam("PaymentId") UUID PaymentId,
                           @RequestParam("addressDelivery") String addressDelivery,
 
+
                           RedirectAttributes redirectAttributes
     ) {
         boolean hasError = false;
@@ -121,8 +122,8 @@ public class ThanhToanContoller {
             KhachHang customer = customerService.getKhachHangByName(username);
             GioHang cart = cartService.getOne(customer.getIdKhachHang());
             ArrayList<ViewGioHangChiTiet> lstCartDetailView = cartDetailService.getGioHangChiTietByCustomerId(customer.getIdKhachHang());
-            HoaDon bill = new HoaDon();
 
+            HoaDon bill = new HoaDon();
             bill.setIdHoaDon(UUID.randomUUID());
             bill.setTenNguoiNhan(receiverName);
             bill.setSoDienThoai(customerPhone);
@@ -131,25 +132,29 @@ public class ThanhToanContoller {
             bill.setKhachHang(customer);
             bill.setPhuongThucThanhToan(paymentService.getOne(PaymentId));
             bill.setTrangThaiHoaDon(billStatusService.findById(UUID.fromString("259b8bc3-5489-47c0-a115-b94a0cf6286f")));
+
             HoaDon b;
+
 
             bill.setTongTien(cart.getTongTien());
 
             b = billService.add(bill);
 
+
+            // Tạo danh sách Chi Tiết Hóa Đơn
             for (var lstItem : lstCartDetailView) {
                 SanPham product = productService.getOne(lstItem.getSanPhamId());
                 product.setSoLuong(product.getSoLuong() - lstItem.getSoLuong());
                 product.setDaBan(product.getDaBan() + lstItem.getSoLuong());
-                if (product.getSoLuong() <= 0) {
-                    redirectAttributes.addFlashAttribute("productOutOfStock", product.getTenSanPham() + " is out of stock");
-                }
+
                 ChiTietHoaDon billDetail = new ChiTietHoaDon();
                 billDetail.setIdChiTietHoaDon(UUID.randomUUID());
                 billDetail.setSoLuong(lstItem.getSoLuong());
                 billDetail.setGia(lstItem.getGia());
                 billDetail.setHoaDon(b);
                 billDetail.setChiTietSanPham(productDetailServiceimpl.getOne(lstItem.getChiTietSanPhamid()));
+
+                // Lưu Chi Tiết Hóa Đơn vào cơ sở dữ liệu
                 billDetailService.add(billDetail);
                 productService.update(product.getIdSanPham(), product);
                 cartDetailService.delete(lstItem.getId());

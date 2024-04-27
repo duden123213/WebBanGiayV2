@@ -64,7 +64,7 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
                     c.setSoLuong(gioHangChiTiet.getSoLuong());
                     c.setGia(chiTietSanPham.getGiaNhap());
                     c.setGiaSanPham(chiTietSanPham.getGiaBan());
-                    c.setChiTietSanPhamid(sanPham.getIdSanPham());
+                    c.setSanPhamId(sanPham.getIdSanPham());
                     c.setChiTietSanPhamid(chiTietSanPham.getIdChiTietSanPham());
                     c.setGioHang(gioHang);
                     c.setChiTietSanPham(chiTietSanPham);
