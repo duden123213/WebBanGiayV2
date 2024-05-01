@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.PhanLoai;
+import com.example.demo.entity.ThuongHieu;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,5 +19,7 @@ public interface PhanLoaiService {
     void update(UUID id, PhanLoai phanLoai);
 
     PhanLoai getOne(UUID id);
+
+    Page<PhanLoai> getAllWithPagination(Pageable pageable);
 }
 

@@ -96,9 +96,9 @@
                                 </div>
                                 <div>
                                     Trạng thái :
-                                    <input type="radio" name="trangThai" value="0" ${ phanloai.trangThai == "0" ? "checked" : "" }>
+                                    <input type="radio" name="trangThai" value="1" ${ phanloai.trangThai == "0" ? "checked" : "" }>
                                     Còn Hàng <br>
-                                    <input type="radio" name="trangThai" value="1" ${ phanloai.trangThai == "1" ? "checked" : "" }>
+                                    <input type="radio" name="trangThai" value="0" ${ phanloai.trangThai == "1" ? "checked" : "" }>
                                     Hết hàng
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Update" style="margin-top: 10px">

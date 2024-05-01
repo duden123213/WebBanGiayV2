@@ -37,15 +37,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listKichCo}" var="kc">
+                                <c:forEach items="${listKichCo}" var="kichCo">
                                     <tr>
-                                        <td>${kc.tenKichCo}</td>
-                                        <td>${kc.moTa}</td>
-                                        <td>${kc.trangThai == 0 ? "Còn hàng" : "Hết hàng"}</td>
+                                        <td>${kichCo.tenKichCo}</td>
+                                        <td>${kichCo.moTa}</td>
+                                        <td>${kichCo.trangThai == 0 ? "Còn hàng" : "Hết hàng"}</td>
                                         <td>
-                                            <a href="/kichCo/delete/${kc.idKichCo}" class="btn btn-danger"
+                                            <a href="/kichCo/delete/${kichCo.idKichCo}" class="btn btn-danger"
                                                onclick="return confirm('Bạn chắc chắn có muốn xóa??')">Delete</a>
-                                            <a href="/kichCo/detail/${kc.idKichCo}" class="btn btn-success">Detail</a>
+                                            <a href="/kichCo/detail/${kichCo.idKichCo}" class="btn btn-success">Detail</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -94,21 +94,21 @@
                     <div class="tab-content pt-2" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel"
                              aria-labelledby="home-tab">
-                            <form method="post" action="/kichCo/update/${kc.idKichCo}">
+                            <form method="post" action="/kichCo/update/${kichCo.idKichCo}">
 
                                 <div>
                                     Loại kích cỡ :
-                                    <input class="form-control" name="tenKichCo" value="${kc.tenKichCo}">
+                                    <input class="form-control" name="tenKichCo" value="${kichCo.tenKichCo}">
                                 </div>
                                 <div>
                                     Mô tả :
-                                    <input class="form-control" name="moTa" value="${kc.moTa}">
+                                    <input class="form-control" name="moTa" value="${kichCo.moTa}">
                                 </div>
                                 <div>
                                     Trạng thái :
-                                    <input type="radio" name="trangThai" value="0" ${ kc.trangThai == "0" ? "checked" : "" }>
+                                    <input type="radio" name="trangThai" value="1" ${ kichCo.trangThai == "0" ? "checked" : "" }>
                                     Còn Hàng <br>
-                                    <input type="radio" name="trangThai" value="1" ${ kc.trangThai == "1" ? "checked" : "" }>
+                                    <input type="radio" name="trangThai" value="0" ${ kichCo.trangThai == "1" ? "checked" : "" }>
                                     Hết hàng
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Update" style="margin-top: 10px">

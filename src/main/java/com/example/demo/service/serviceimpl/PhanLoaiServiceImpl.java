@@ -1,9 +1,12 @@
 package com.example.demo.service.serviceimpl;
 
 import com.example.demo.entity.PhanLoai;
+import com.example.demo.entity.ThuongHieu;
 import com.example.demo.repository.PhanLoaiRepository;
 import com.example.demo.service.PhanLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,5 +48,10 @@ public class PhanLoaiServiceImpl implements PhanLoaiService {
         } else {
             return categoryOptional.get();
         }
+    }
+
+    @Override
+    public Page<PhanLoai> getAllWithPagination(Pageable pageable) {
+        return responsitory.findAll(pageable);
     }
 }
